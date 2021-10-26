@@ -1,4 +1,4 @@
-package Universidad.Modelo;
+package RealidadTenis.Modelo;
 
 
 import java.sql.Connection;
