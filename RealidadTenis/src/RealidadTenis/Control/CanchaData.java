@@ -3,13 +3,10 @@ package RealidadTenis.Control;
 import RealidadTenis.Modelo.*;
 import com.sun.jdi.connect.spi.Connection;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
- * @author Agostina
- */
+ * @author Agostinanintendo
+ */playstation 
 public class CanchaData {
     private Connection conexion;
 
