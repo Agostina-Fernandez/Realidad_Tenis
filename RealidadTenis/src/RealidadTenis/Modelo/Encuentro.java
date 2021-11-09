@@ -13,11 +13,13 @@ public class Encuentro {
     private Cancha cancha;
     private Jugador jugador1;
     private Jugador jugador2;
+    private Jugador ganador;
     private LocalDate fecha;
     private LocalTime hora;
     private int resultadoJ1;
     private int resultadoJ2;
     private String estado;
+    private boolean activo = true;
     private boolean programado;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
@@ -26,21 +28,23 @@ public class Encuentro {
     public Encuentro(){
     }
 
-    public Encuentro(Torneo torneo, Cancha cancha, Jugador jugador1, Jugador jugador2, String fecha, LocalTime hora, int resultadoJ1, int resultadoJ2, String estado, boolean programado) {
+    public Encuentro(Torneo torneo, Cancha cancha, Jugador jugador1, Jugador jugador2, Jugador ganador, String fecha, LocalTime hora, int resultadoJ1, int resultadoJ2, String estado, boolean activo, boolean programado) {
         this.torneo = torneo;
         this.cancha = cancha;
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
+        this.ganador = ganador;
         this.hora = hora;
         this.resultadoJ1 = resultadoJ1;
         this.resultadoJ2 = resultadoJ2;
         this.estado = estado;
+        this.activo = activo;
         this.programado = programado;
         this.fecha = LocalDate.parse(fecha, formato);
     }
     
-    public Encuentro(int idEncuentro, Torneo torneo, Cancha cancha, Jugador jugador1, Jugador jugador2, String fecha, LocalTime hora, int resultadoJ1, int resultadoJ2, String estado, boolean programado){
-        this(torneo, cancha, jugador1, jugador2, fecha, hora, resultadoJ1, resultadoJ2, estado, programado);
+    public Encuentro(int idEncuentro, Torneo torneo, Cancha cancha, Jugador jugador1, Jugador jugador2, Jugador ganador, String fecha, LocalTime hora, int resultadoJ1, int resultadoJ2, String estado, boolean activo, boolean programado){
+        this(torneo, cancha, jugador1, jugador2, ganador, fecha, hora, resultadoJ1, resultadoJ2, estado, activo, programado);
         
         this.idEncuentro = idEncuentro;
     }
@@ -91,8 +95,16 @@ public class Encuentro {
         this.programado = programado;
     }
 
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
     public void setFormato(DateTimeFormatter formato) {
         this.formato = formato;
+    }
+    
+    public void setGanador(Jugador ganador) {
+        this.ganador = ganador;
     }
     
     /* GETTERS */
@@ -115,6 +127,10 @@ public class Encuentro {
 
     public Jugador getJugador2() {
         return jugador2;
+    }
+    
+    public Jugador getGanador() {
+        return ganador;
     }
 
     public LocalDate getFecha() {
@@ -139,6 +155,10 @@ public class Encuentro {
 
     public boolean isProgramado() {
         return programado;
+    }
+
+    public boolean isActivo() {
+        return activo;
     }
 
     public DateTimeFormatter getFormato() {
