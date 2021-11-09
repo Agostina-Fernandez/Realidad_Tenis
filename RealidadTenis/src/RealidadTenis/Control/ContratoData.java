@@ -8,6 +8,6 @@ package RealidadTenis.Control;
  *
  * @author Agostina
  */
-public class SponsorData {
+public class ContratoData {
     
 }
