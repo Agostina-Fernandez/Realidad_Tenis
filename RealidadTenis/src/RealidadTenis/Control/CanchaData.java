@@ -6,7 +6,7 @@ import java.sql.*;
 /**
  *
  * @author Agostinanintendo
- */playstation 
+ */
 public class CanchaData {
     private Connection conexion;
 

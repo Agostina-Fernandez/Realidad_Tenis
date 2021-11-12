@@ -176,11 +176,6 @@ public class EncuentroData {
                 encuentro = new Encuentro();
                 
                 encuentro.setIdEncuentro(resultSet.getInt("id_encuentro"));
-                encuentro.setLegajo(resultSet.getInt("legajo"));
-                encuentro.setNombre(resultSet.getString("nombre"));
-                encuentro.setApellido(resultSet.getString("apellido"));
-                encuentro.setFecha(resultSet.getDate("fecha").toLocalDate());
-                encuentro.setActivo(resultSet.getBoolean("activo"));
                 
             }
             
@@ -188,6 +183,6 @@ public class EncuentroData {
             System.out.println("Error al buscar");
         }
         
-        return alumno;
+        return encuentro;
     }
 }
