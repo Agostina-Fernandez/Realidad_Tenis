@@ -41,8 +41,16 @@ public class Torneo {
         this.nombreCopa = nombreCopa;
     }
 
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicioString(String fechaInicio) {
         this.fechaInicio = LocalDate.parse(fechaInicio, formato);
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public void setFechaFin(String fechaFin) {
