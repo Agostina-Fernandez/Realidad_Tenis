@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -26,6 +27,27 @@ public class PatrocinadorData {
             System.out.println("Error en la conexión UsuarioData");
         }
 
+    }
+    
+    public void guardarPatrocinador(Patrocinador patrocinador){
+        String comandoSql = "INSERT INTO patrocinador (marca, articulo, activo) "
+                + "VALUES (?,?,?)";
+        
+        PreparedStatement prepStat;
+        try {
+            prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
+            
+            prepStat.setString(1, patrocinador.getMarca());
+            prepStat.setString(2, patrocinador.getArticulo());
+            prepStat.setBoolean(3, patrocinador.isActivo());
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar patrocinador");
+        }
     }
     
     public Patrocinador buscarPatrocinador(int id){
@@ -53,4 +75,45 @@ public class PatrocinadorData {
         
         return patrocinador;
     }
+    
+    public void activarPatrocinador(int id){
+        String comandoSql = "UPDATE patrocinador activo=? WHERE id_patrocinador=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setBoolean(1, true);
+            
+            prepStat.setInt(2, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al activar patrocinador");
+        }
+    }
+    
+    public void desactivarPatrocinador(int id){
+        String comandoSql = "UPDATE patrocinador activo=? WHERE id_patrocinador=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setBoolean(1, false);
+            
+            prepStat.setInt(2, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al activar patrocinador");
+        }
+    }
+    
 }

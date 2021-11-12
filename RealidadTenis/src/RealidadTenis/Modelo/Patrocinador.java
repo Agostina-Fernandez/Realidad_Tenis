@@ -9,6 +9,7 @@ import java.util.Objects;
 public class Patrocinador {
     private int idPatrocinador;
     private String Marca;
+    private String articulo;
     private boolean activo;
     
     /* CONSTRUCTORES */
@@ -20,9 +21,10 @@ public class Patrocinador {
         this.activo = activo;
     }
 
-    public Patrocinador(int idPatrocinador, String Marca, boolean activo) {
+    public Patrocinador(int idPatrocinador, String Marca, String articulo, boolean activo) {
         this.idPatrocinador = idPatrocinador;
         this.Marca = Marca;
+        this.articulo = articulo;
         this.activo = activo;
     }
     
@@ -35,7 +37,11 @@ public class Patrocinador {
     public void setMarca(String Marca) {
         this.Marca = Marca;
     }
-
+    
+    public void setArticulo(String articulo){
+        this.articulo = articulo;
+    }
+    
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
@@ -48,6 +54,10 @@ public class Patrocinador {
 
     public String getMarca() {
         return Marca;
+    }
+    
+    public String getArticulo(){
+        return articulo;
     }
 
     public boolean isActivo() {
