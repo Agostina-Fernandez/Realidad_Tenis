@@ -62,7 +62,7 @@ public class JugadorData {
     }
     
     public void activarJugador(int id){
-        String comandoSql = "UPDATE jugador activo=? WHERE idJugador=?";
+        String comandoSql = "UPDATE jugador activo=? WHERE id_jugador=?";
         PreparedStatement prepStat;
         
         try {
@@ -82,7 +82,7 @@ public class JugadorData {
     }
     
     public void desactivarJugador(int id){
-        String comandoSql = "UPDATE jugador activo=? WHERE idAlumno=?";
+        String comandoSql = "UPDATE jugador activo=? WHERE id_jugador=?";
         PreparedStatement prepStat;
         
         try {
@@ -104,7 +104,7 @@ public class JugadorData {
     public void actualizarJugador(Jugador jugador) {
         
         String comandoSql = "UPDATE jugador " +
-                "SET nombre=?,apellido=?,dni=?,fecha_nacimiento=?, altura=?, peso=?, estilo=?, diestro=?, activo=? WHERE idJugador=?";
+                "SET nombre=?,apellido=?,dni=?,fecha_nacimiento=?, altura=?, peso=?, estilo=?, diestro=?, activo=? WHERE id_jugador=?";
         PreparedStatement prepStat;
         
         try {
@@ -131,7 +131,7 @@ public class JugadorData {
     }
     
     public Jugador buscarJugador(int id){
-        String comandoSql = "SELECT * FROM jugador WHERE idJugador=?";
+        String comandoSql = "SELECT * FROM jugador WHERE id_jugador=?";
         Jugador jugador = null;
         
         try {
@@ -143,7 +143,7 @@ public class JugadorData {
             if (resultSet.next()){
                 jugador = new Jugador();
                 
-                jugador.setIdJugador(resultSet.getInt("idJugador"));
+                jugador.setIdJugador(resultSet.getInt("id_jugador"));
                 jugador.setNombre(resultSet.getString("nombre"));
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
@@ -179,7 +179,7 @@ public class JugadorData {
                 
                 jugador = new Jugador();
                 
-                jugador.setIdJugador(resultSet.getInt("idJugador"));
+                jugador.setIdJugador(resultSet.getInt("id_jugador"));
                 jugador.setNombre(resultSet.getString("nombre"));
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
@@ -216,7 +216,7 @@ public class JugadorData {
                 
                 jugador = new Jugador();
                 
-                jugador.setIdJugador(resultSet.getInt("idJugador"));
+                jugador.setIdJugador(resultSet.getInt("id_jugador"));
                 jugador.setNombre(resultSet.getString("nombre"));
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
@@ -240,7 +240,7 @@ public class JugadorData {
     }
     
     public void borrarJugador(int id){
-        String comandoSql = "DELETE FROM jugador WHERE idJugador=?";
+        String comandoSql = "DELETE FROM jugador WHERE id_jugador=?";
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             
@@ -254,26 +254,4 @@ public class JugadorData {
         }
     }
     
-    public int buscarIdAlumno(int id){
-        String comandoSql = "SELECT idJugador FROM jugador WHERE idJugador=?";
-        int resultado = 0;
-        System.out.println("sql" + comandoSql);
-        
-        try {
-            
-            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
-            
-            prepStat.setInt(1, id);
-            ResultSet resultSet = prepStat.executeQuery();
-            
-            if (resultSet.next()){
-                resultado = resultSet.getInt("idJugador");
-            }
-            
-        } catch (SQLException ex) {
-            System.out.println("Error al encontrar id jugador");
-        }
-        
-        return resultado;
-    }
 }

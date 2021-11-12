@@ -45,7 +45,40 @@ public class CanchaData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al insertar");
+            System.out.println("Error al insertar cancha");
         }
+    }
+    
+    public Cancha buscarCancha(int id){
+        String comandoSql = "SELECT * FROM cancha WHERE id_cancha=?";
+        Cancha cancha = null;
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setInt(1, id);
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            if (resultSet.next()){
+                cancha = new Cancha();
+                
+                cancha.setIdCancha(resultSet.getInt("id_cancha"));
+                cancha.setCiudad(resultSet.getString("ciudad"));
+                cancha.setDireccion(resultSet.getString("direccion"));
+                cancha.setAncho(resultSet.getInt("ancho"));
+                cancha.setLargo(resultSet.getInt("largo"));
+                cancha.setCategoria(resultSet.getString("categoria"));
+                cancha.setCapacidad(resultSet.getInt("capacidad"));
+                cancha.setNumeroCancha(resultSet.getInt("numero_cancha"));
+                cancha.setEnUso(resultSet.getBoolean("enUso"));
+                
+                
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar cancha");
+        }
+        
+        return cancha;
     }
 }
