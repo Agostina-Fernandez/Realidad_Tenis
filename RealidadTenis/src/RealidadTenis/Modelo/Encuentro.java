@@ -71,8 +71,12 @@ public class Encuentro {
         this.jugador2 = jugador2;
     }
 
-    public void setFecha(String fecha) {
+    public void setFechaString(String fecha) {
         this.fecha = LocalDate.parse(fecha, formato);
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public void setHora(LocalTime hora) {

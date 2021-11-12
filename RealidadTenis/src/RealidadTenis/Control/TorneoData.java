@@ -56,4 +56,44 @@ public class TorneoData {
             System.out.println("Error al insertar");
         }
     }
+    
+    public void activarTorneo(int id){
+        String comandoSql = "UPDATE torneo activo=? WHERE id_torneo=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setBoolean(1, true);
+            
+            prepStat.setInt(2, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al activar");
+        }
+    }
+    
+    public void desactivarTorneo(int id){
+        String comandoSql = "UPDATE torneo activo=? WHERE id_torneo=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setBoolean(1, false);
+            
+            prepStat.setInt(2, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al activar");
+        }
+    }
 }
