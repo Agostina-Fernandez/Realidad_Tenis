@@ -132,7 +132,7 @@ public class VistaInicio extends javax.swing.JInternalFrame {
                 .addComponent(jButtonMenuContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonMenuListado, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -159,7 +159,7 @@ public class VistaInicio extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,6 +178,7 @@ public class VistaInicio extends javax.swing.JInternalFrame {
 
     private void jButtonZonaDeCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZonaDeCargaActionPerformed
         // TODO add your handling code here:
+        menu.verMenuZonaDeCarga();
     }//GEN-LAST:event_jButtonZonaDeCargaActionPerformed
 
     private void jButtonMenuTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuTorneoActionPerformed

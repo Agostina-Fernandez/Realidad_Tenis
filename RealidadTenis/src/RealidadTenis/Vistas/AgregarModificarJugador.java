@@ -5,17 +5,36 @@
  */
 package RealidadTenis.Vistas;
 
+import RealidadTenis.Control.JugadorData;
+import RealidadTenis.Modelo.Jugador;
+import static java.lang.Double.parseDouble;
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Win10
+ * @author Mauri
  */
 public class AgregarModificarJugador extends javax.swing.JInternalFrame {
-
+    private boolean ok;
+    private JugadorData jd;
+    private Jugador modJugador;
+    private MenuPrincipal menu;
+    private int id;
     /**
      * Creates new form AgregarModificarJugador
      */
-    public AgregarModificarJugador(MenuPrincipal menu) {
+    public AgregarModificarJugador(MenuPrincipal menu, JugadorData jd) {
         initComponents();
+        this.jd = jd;
+        modJugador = new Jugador();
+        this.menu = menu;
     }
 
     /**
@@ -32,17 +51,27 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
         jButtonSalir = new javax.swing.JButton();
         jTextFecha = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jCheckBoxEstado = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jTextNombre = new javax.swing.JTextField();
         jTextApellido = new javax.swing.JTextField();
-        jTextLegajo = new javax.swing.JTextField();
+        jTextID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButtonBuscar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextDni = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextAltura = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextPeso = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextEstilo = new javax.swing.JTextField();
+        jCheckBoxDiestro = new javax.swing.JCheckBox();
 
         jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -99,10 +128,10 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
         jTextApellido.setEditable(false);
         jTextApellido.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jTextLegajo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextID.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel1.setText("Número de legajo");
+        jLabel1.setText("ID");
 
         jButtonBuscar.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jButtonBuscar.setText("Buscar");
@@ -118,21 +147,86 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("AGREGAR/MODIFICAR JUGADOR");
 
+        jLabel3.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel3.setText("Nombre/s");
+
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel8.setText("D.N.I");
+
+        jTextDni.setEditable(false);
+        jTextDni.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel9.setText("Altura");
+
+        jTextAltura.setEditable(false);
+        jTextAltura.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel10.setText("Peso");
+
+        jTextPeso.setEditable(false);
+        jTextPeso.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel11.setText("Estilo");
+
+        jTextEstilo.setEditable(false);
+        jTextEstilo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jCheckBoxDiestro.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 18)); // NOI18N
+        jCheckBoxDiestro.setText("Diestro");
+        jCheckBoxDiestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxDiestroActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(544, 544, 544)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(427, 427, 427)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11))
+                            .addGap(150, 150, 150)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextDni, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(544, 544, 544)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBoxDiestro, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(94, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -140,22 +234,12 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
-                                .addComponent(jLabel2)
                                 .addComponent(jLabel4))
                             .addGap(48, 48, 48)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                                .addComponent(jTextApellido, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButtonBuscar))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(8, 8, 8)))
-                            .addGap(18, 18, 18)
+                            .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jButtonBuscar)
+                            .addGap(35, 35, 35)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel5)
@@ -163,17 +247,50 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(174, 174, 174)
                             .addComponent(jLabel7)))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(301, Short.MAX_VALUE)
+                .addContainerGap(149, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jTextDni, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jCheckBoxDiestro, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonSalir)
                     .addComponent(jButtonLimpiar))
-                .addGap(39, 39, 39))
+                .addGap(38, 38, 38))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -183,27 +300,15 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButtonBuscar)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(42, 42, 42)
-                                    .addComponent(jCheckBoxEstado)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addContainerGap(108, Short.MAX_VALUE)))
+                            .addGap(42, 42, 42)
+                            .addComponent(jCheckBoxEstado)
+                            .addGap(62, 62, 62)
+                            .addComponent(jLabel5)))
+                    .addContainerGap(378, Short.MAX_VALUE)))
         );
 
         pack();
@@ -211,41 +316,50 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-        int legajo=0;
+        int ID=0;
         try{
-            legajo=Integer.parseInt(jTextLegajo.getText());
+            ID=Integer.parseInt(jTextID.getText());
         }
         catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo ID ingresar solo numeros");
         }
-        String apellido=jTextApellido.getText();
-        String nombre=jTextNombre.getText();
-        Date fecha = jDateChooser1.getDate();
+        String apellido = jTextApellido.getText();
+        String nombre = jTextNombre.getText();
+        long dni = parseInt(jTextDni.getText());
+        Double altura = parseDouble(jTextAltura.getText());
+        float peso = parseFloat(jTextPeso.getText());
+        String estilo = jTextEstilo.getText();
+        Date fecha = (Date)jDateChooser1.getDate();
+        
 
-        if(fecha==null||legajo==0||apellido==null||nombre==null)
-        JOptionPane.showMessageDialog(this,"Rellene todos los campos, apellido, nombre, legajo y fecha");
+        if(fecha==null||ID==0||apellido==null||nombre==null)
+        JOptionPane.showMessageDialog(this,"Rellene todos los campos");
         else{
             LocalDate fe = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             System.out.println(fe);
-            if (ok== false) {
-                modAlumno.setLegajo(legajo);
-                modAlumno.setNombre(nombre);
-                modAlumno.setApellido(apellido);
-                modAlumno.setFechaNac(fe);
-                modAlumno.setActivo(jCheckBoxEstado.isSelected());
-
-                ad.guardarAlumno(modAlumno, jTextNombreUsuario.getText(), jPasswordFieldUsuario.getText());
+            if (ok == false) {
+                modJugador.setNombre(nombre);
+                modJugador.setApellido(apellido);
+                modJugador.setFechaNacimiento(fe.toString());
+                modJugador.setDni(dni);
+                modJugador.setAltura(altura);
+                modJugador.setActivo(jCheckBoxEstado.isSelected());
+                modJugador.setDiestro(jCheckBoxDiestro.isSelected());
+                jd.guardarJugador(modJugador);
             }
             else {
-                modAlumno.setLegajo(legajo);
-                modAlumno.setNombre(nombre);
-                modAlumno.setApellido(apellido);
-                modAlumno.setFechaNac(fe);
-                modAlumno.setActivo(jCheckBoxEstado.isSelected());
+                modJugador.setNombre(nombre);
+                modJugador.setApellido(apellido);
+                modJugador.setFechaNacimiento(fe.toString());
+                modJugador.setDni(dni);
+                modJugador.setAltura(altura);
+                modJugador.setActivo(jCheckBoxEstado.isSelected());
+                modJugador.setDiestro(jCheckBoxDiestro.isSelected());
 
-                ad.actualizarAlumno(modAlumno);
+                jd.actualizarJugador(modJugador);
             }
             jButtonGuardar.setEnabled(false);
+            JOptionPane.showMessageDialog(this,"El jugador fue ingresado al sistema con exito");
             this.jButtonLimpiarActionPerformed(evt);
         }
         this.jButtonLimpiarActionPerformed(evt);
@@ -253,16 +367,21 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
-        jTextLegajo.setText("");
+        jTextID.setText("");
         jTextApellido.setText("");
         jTextNombre.setText("");
         jTextFecha.setText("");
+        jTextDni.setText("");
+        jTextAltura.setText("");
+        jTextPeso.setText("");
+        jTextEstilo.setText("");
         jButtonGuardar.setEnabled(false);
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
-        menu.sesionDocente(user);
+        //menu.sesionDocente(user);
+        menu.verMenuZonaDeCarga();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jCheckBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEstadoActionPerformed
@@ -270,41 +389,54 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBoxEstadoActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        int legajo = 0;
+        int ID = 0;
         ok = false;
 
         try{
-            legajo = Integer.parseInt(jTextLegajo.getText());
+            ID = Integer.parseInt(jTextID.getText());
         }
         catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo ID ingresar solo numeros");
         }
-        if(legajo==0){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
+        if(ID==0){
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo ID ingresar solo numeros");
         }
         else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-            Iterator it = ad.obtenerAlumnos().iterator();
+            Iterator it = jd.obtenerJugadores().iterator();
             while(it.hasNext()){
-                Alumno a1 = (Alumno)it.next();
-                if(legajo == a1.getLegajo()){
-                    id = a1.getIdAlumno();
-                    jTextApellido.setText(a1.getApellido());
-                    jTextNombre.setText(a1.getNombre());
-                    jTextFecha.setText(a1.getFechaNac().format(formatter));
-                    jDateChooser1.setDate(java.sql.Date.valueOf(a1.getFechaNac()));
+                Jugador j1 = (Jugador)it.next();
+                if(ID == j1.getIdJugador()){
+                    id = j1.getIdJugador();
+                    jTextApellido.setText(j1.getApellido());
+                    jTextNombre.setText(j1.getNombre());
+                    jTextDni.setText(""+j1.getDni());
+                    jTextAltura.setText(""+j1.getAltura());
+                    jTextPeso.setText(""+j1.getPeso());
+                    jTextEstilo.setText(""+j1.getEstilo());
+                    jTextFecha.setText(j1.getFechaNacimiento().format(formatter));
+                    jDateChooser1.setDate(java.sql.Date.valueOf(j1.getFechaNacimiento()));
 
-                    if(a1.isActivo()){
+                    if(j1.isActivo()){
                         jCheckBoxEstado.setSelected(true);
                     }
                     else {
                         jCheckBoxEstado.setSelected(false);
                     }
-                    modAlumno.setIdAlumno(id);
+                    
+                    if(j1.isDiestro()){
+                        jCheckBoxDiestro.setSelected(true);
+                    }
+                    else {
+                        jCheckBoxDiestro.setSelected(false);
+                    }
+                    modJugador.setIdJugador(id);
                     jTextApellido.setEditable(true);
                     jTextNombre.setEditable(true);
-                    jTextNombreUsuario.setEditable(true);
-                    jPasswordFieldUsuario.setEditable(true);
+                    jTextDni.setEditable(true);
+                    jTextAltura.setEditable(true);
+                    jTextPeso.setEditable(true);
+                    jTextEstilo.setEditable(true);
                     jCheckBoxEstado.setEnabled(true);
                     jButtonGuardar.setEnabled(true);
                     ok = true;
@@ -314,15 +446,21 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
                 this.jButtonLimpiarActionPerformed(evt);
                 jTextApellido.setEditable(true);
                 jTextNombre.setEditable(true);
-                jTextNombreUsuario.setEditable(true);
-                jPasswordFieldUsuario.setEditable(true);
-                jTextLegajo.setText(String.valueOf(legajo));
+                jTextDni.setEditable(true);
+                jTextAltura.setEditable(true);
+                jTextPeso.setEditable(true);
+                jTextEstilo.setEditable(true);
+                jTextID.setText(String.valueOf(ID));
                 jCheckBoxEstado.setEnabled(true);
-                JOptionPane.showMessageDialog(this , legajo+" ,está disponible para usar");
+                JOptionPane.showMessageDialog(this , ID+" ,está disponible para usar");
                 jButtonGuardar.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jCheckBoxDiestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxDiestroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxDiestroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -330,17 +468,27 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JCheckBox jCheckBoxDiestro;
     private javax.swing.JCheckBox jCheckBoxEstado;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextAltura;
     private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextDni;
+    private javax.swing.JTextField jTextEstilo;
     private javax.swing.JTextField jTextFecha;
-    private javax.swing.JTextField jTextLegajo;
+    private javax.swing.JTextField jTextID;
     private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextPeso;
     // End of variables declaration//GEN-END:variables
 }

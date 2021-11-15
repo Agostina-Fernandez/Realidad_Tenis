@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  *playstation 
- * @author Agostinanintendo
+ * @author Agostinanintendo and Mauri
  */
 public class CanchaData {
     private Connection conexion;

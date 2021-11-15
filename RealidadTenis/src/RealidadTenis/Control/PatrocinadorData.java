@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -116,4 +117,53 @@ public class PatrocinadorData {
         }
     }
     
+    public boolean patrocinadorExiste(int id){
+        boolean ret = false;
+        String sql = "SELECT * FROM `patrocinador` WHERE `id_patrocinador`=?";
+        try{
+            PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                ret = true;
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al buscar el patrocinador en la base de datos");
+        }
+    return ret;
+    }
+    
+    public void modificarEstado(int id){
+        String sql = "UPDATE `patrocinador` SET `activo`=? WHERE `id_patrocinador`=?";
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            Patrocinador p = this.buscarPatrocinador(id);
+            ps.setBoolean(1,!p.isActivo());
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al modificar el estado de la materia en la base de datos.");
+        }
+    }
+    
+    public void actualizarPatrocinador(Patrocinador patrocinador){
+        String comandoSql = "UPDATE patrocinador "
+                + "SET marca=?, activo=? WHERE id_patrocinador=?";
+        
+        PreparedStatement prepStat;
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setString(1, patrocinador.getMarca());
+            prepStat.setBoolean(2, patrocinador.isActivo());
+            
+            prepStat.setInt(3, patrocinador.getIdPatrocinador());
+            
+            prepStat.executeUpdate();
+            prepStat.close();
+        } catch (SQLException ex) {
+            System.out.println("No se pudo actualizar");
+        }
+    }
 }

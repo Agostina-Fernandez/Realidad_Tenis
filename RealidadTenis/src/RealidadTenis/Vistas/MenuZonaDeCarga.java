@@ -5,17 +5,20 @@
  */
 package RealidadTenis.Vistas;
 
+import RealidadTenis.Modelo.Conexion;
+
 /**
  *
- * @author Win10
+ * @author Mauri
  */
 public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
-
+    private MenuPrincipal menu;
     /**
      * Creates new form MenuZonaDeCarga
      */
-    public MenuZonaDeCarga() {
+    public MenuZonaDeCarga(MenuPrincipal menu) {
         initComponents();
+        this.menu = menu;
     }
 
     /**
@@ -34,6 +37,7 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
         jButtonAgregarModificarJugador = new javax.swing.JButton();
         jButtonAgregarModificarCancha = new javax.swing.JButton();
         jButtonAgregarModificarPatrocinador = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -75,6 +79,16 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -86,6 +100,10 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
                     .addComponent(jButtonAgregarModificarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAgregarModificarPatrocinador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalir)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,9 +112,11 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
                 .addComponent(jButtonAgregarModificarJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58)
                 .addComponent(jButtonAgregarModificarCancha, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
                 .addComponent(jButtonAgregarModificarPatrocinador, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jButtonSalir)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -123,7 +143,7 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -134,7 +154,7 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -142,21 +162,30 @@ public class MenuZonaDeCarga extends javax.swing.JInternalFrame {
 
     private void jButtonAgregarModificarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarModificarJugadorActionPerformed
         // TODO add your handling code here:
+        menu.verAgregarModificarJugador();
     }//GEN-LAST:event_jButtonAgregarModificarJugadorActionPerformed
 
     private void jButtonAgregarModificarCanchaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarModificarCanchaActionPerformed
         // TODO add your handling code here:
+        menu.verAgregarModificarCancha();
     }//GEN-LAST:event_jButtonAgregarModificarCanchaActionPerformed
 
     private void jButtonAgregarModificarPatrocinadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarModificarPatrocinadorActionPerformed
         // TODO add your handling code here:
+        menu.verAgregarModificarPatrocinador();
     }//GEN-LAST:event_jButtonAgregarModificarPatrocinadorActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.iniciarSesion();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarModificarCancha;
     private javax.swing.JButton jButtonAgregarModificarJugador;
     private javax.swing.JButton jButtonAgregarModificarPatrocinador;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
