@@ -27,21 +27,320 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonGuardar = new javax.swing.JButton();
+        jButtonLimpiar = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
+        jTextFecha = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+        jCheckBoxEstado = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
+        jTextNombre = new javax.swing.JTextField();
+        jTextApellido = new javax.swing.JTextField();
+        jTextLegajo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonBuscar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+
+        jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
+
+        jButtonLimpiar.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonLimpiar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
+        jTextFecha.setEditable(false);
+        jTextFecha.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel4.setText("Fecha de nacimiento");
+
+        jLabel5.setText("* seleccione fecha");
+
+        jCheckBoxEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jCheckBoxEstado.setText(" Activado");
+        jCheckBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxEstadoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel2.setText("Apellido/s");
+
+        jTextNombre.setEditable(false);
+        jTextNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jTextApellido.setEditable(false);
+        jTextApellido.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jTextLegajo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel1.setText("Número de legajo");
+
+        jButtonBuscar.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("* Busque para ver disponibilidad");
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("AGREGAR/MODIFICAR JUGADOR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(544, 544, 544)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(87, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4))
+                            .addGap(48, 48, 48)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                                .addComponent(jTextApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonBuscar))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(8, 8, 8)))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel5)
+                                .addComponent(jCheckBoxEstado)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(174, 174, 174)
+                            .addComponent(jLabel7)))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(301, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonSalir)
+                    .addComponent(jButtonLimpiar))
+                .addGap(39, 39, 39))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel7)
+                    .addGap(39, 39, 39)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel4)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonBuscar)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(42, 42, 42)
+                                    .addComponent(jCheckBoxEstado)))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel5)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(108, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // TODO add your handling code here:
+        int legajo=0;
+        try{
+            legajo=Integer.parseInt(jTextLegajo.getText());
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
+        }
+        String apellido=jTextApellido.getText();
+        String nombre=jTextNombre.getText();
+        Date fecha = jDateChooser1.getDate();
+
+        if(fecha==null||legajo==0||apellido==null||nombre==null)
+        JOptionPane.showMessageDialog(this,"Rellene todos los campos, apellido, nombre, legajo y fecha");
+        else{
+            LocalDate fe = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            System.out.println(fe);
+            if (ok== false) {
+                modAlumno.setLegajo(legajo);
+                modAlumno.setNombre(nombre);
+                modAlumno.setApellido(apellido);
+                modAlumno.setFechaNac(fe);
+                modAlumno.setActivo(jCheckBoxEstado.isSelected());
+
+                ad.guardarAlumno(modAlumno, jTextNombreUsuario.getText(), jPasswordFieldUsuario.getText());
+            }
+            else {
+                modAlumno.setLegajo(legajo);
+                modAlumno.setNombre(nombre);
+                modAlumno.setApellido(apellido);
+                modAlumno.setFechaNac(fe);
+                modAlumno.setActivo(jCheckBoxEstado.isSelected());
+
+                ad.actualizarAlumno(modAlumno);
+            }
+            jButtonGuardar.setEnabled(false);
+            this.jButtonLimpiarActionPerformed(evt);
+        }
+        this.jButtonLimpiarActionPerformed(evt);
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        jTextLegajo.setText("");
+        jTextApellido.setText("");
+        jTextNombre.setText("");
+        jTextFecha.setText("");
+        jButtonGuardar.setEnabled(false);
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.sesionDocente(user);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jCheckBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxEstadoActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        int legajo = 0;
+        ok = false;
+
+        try{
+            legajo = Integer.parseInt(jTextLegajo.getText());
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
+        }
+        if(legajo==0){
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
+        }
+        else {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+            Iterator it = ad.obtenerAlumnos().iterator();
+            while(it.hasNext()){
+                Alumno a1 = (Alumno)it.next();
+                if(legajo == a1.getLegajo()){
+                    id = a1.getIdAlumno();
+                    jTextApellido.setText(a1.getApellido());
+                    jTextNombre.setText(a1.getNombre());
+                    jTextFecha.setText(a1.getFechaNac().format(formatter));
+                    jDateChooser1.setDate(java.sql.Date.valueOf(a1.getFechaNac()));
+
+                    if(a1.isActivo()){
+                        jCheckBoxEstado.setSelected(true);
+                    }
+                    else {
+                        jCheckBoxEstado.setSelected(false);
+                    }
+                    modAlumno.setIdAlumno(id);
+                    jTextApellido.setEditable(true);
+                    jTextNombre.setEditable(true);
+                    jTextNombreUsuario.setEditable(true);
+                    jPasswordFieldUsuario.setEditable(true);
+                    jCheckBoxEstado.setEnabled(true);
+                    jButtonGuardar.setEnabled(true);
+                    ok = true;
+                }
+            }
+            if(ok == false){
+                this.jButtonLimpiarActionPerformed(evt);
+                jTextApellido.setEditable(true);
+                jTextNombre.setEditable(true);
+                jTextNombreUsuario.setEditable(true);
+                jPasswordFieldUsuario.setEditable(true);
+                jTextLegajo.setText(String.valueOf(legajo));
+                jCheckBoxEstado.setEnabled(true);
+                JOptionPane.showMessageDialog(this , legajo+" ,está disponible para usar");
+                jButtonGuardar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JCheckBox jCheckBoxEstado;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextFecha;
+    private javax.swing.JTextField jTextLegajo;
+    private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 }
