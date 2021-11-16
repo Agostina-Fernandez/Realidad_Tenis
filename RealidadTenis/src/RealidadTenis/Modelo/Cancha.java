@@ -120,6 +120,6 @@ public class Cancha {
 
     @Override
     public String toString() {
-        return "Cancha{" + "idCancha=" + idCancha + ", ciudad=" + ciudad + ", direccion=" + direccion + ", ancho=" + ancho + ", largo=" + largo + ", categoria=" + categoria + ", capacidad=" + capacidad + ", numeroCancha=" + numeroCancha + ", enUso=" + enUso + '}';
+        return "Id: " + idCancha + " - Numero de cancha: "  + numeroCancha;
     }
 }

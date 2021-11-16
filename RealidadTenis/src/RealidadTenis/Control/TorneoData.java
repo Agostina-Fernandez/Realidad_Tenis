@@ -153,8 +153,8 @@ public class TorneoData {
                 
                 torneo.setIdTorneo(resultSet.getInt("id_torneo"));
                 torneo.setNombreCopa(resultSet.getString("nombre_copa"));
-                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                torneo.setFechaFin(resultSet.getDate("fecha_fin").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toLocalDate());
+                torneo.setFechaFin(resultSet.getDate("fecha_fin").toLocalDate());
                 torneo.setActivo(resultSet.getBoolean("activo"));
                 
             }
@@ -176,15 +176,16 @@ public class TorneoData {
             
             ResultSet resultSet = prepStat.executeQuery();
             
-            if (resultSet.next()){
+            while (resultSet.next()){
                 torneo = new Torneo();
                 
                 torneo.setIdTorneo(resultSet.getInt("id_torneo"));
                 torneo.setNombreCopa(resultSet.getString("nombre_copa"));
-                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                torneo.setFechaFin(resultSet.getDate("fecha_fin").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toLocalDate());
+                torneo.setFechaFin(resultSet.getDate("fecha_fin").toLocalDate());
                 torneo.setActivo(resultSet.getBoolean("activo"));
                 
+                System.out.println("torneo encontrado: " + torneo);
                 torneos.add(torneo);
             }
             
@@ -204,13 +205,13 @@ public class TorneoData {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             ResultSet resultSet = prepStat.executeQuery();
             
-            if (resultSet.next()){
+            while (resultSet.next()){
                 torneo = new Torneo();
                 
                 torneo.setIdTorneo(resultSet.getInt("id_torneo"));
                 torneo.setNombreCopa(resultSet.getString("nombre_copa"));
-                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                torneo.setFechaFin(resultSet.getDate("fecha_fin").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toLocalDate());
+                torneo.setFechaFin(resultSet.getDate("fecha_fin").toLocalDate());
                 torneo.setActivo(resultSet.getBoolean("activo"));
                 
                 torneos.add(torneo);

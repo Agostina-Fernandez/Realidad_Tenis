@@ -6,6 +6,7 @@
 package RealidadTenis.Vistas;
 
 import RealidadTenis.Control.CanchaData;
+import RealidadTenis.Control.EncuentroData;
 import RealidadTenis.Modelo.Cancha;
 import static java.lang.Integer.parseInt;
 import java.util.Iterator;
@@ -15,17 +16,18 @@ import javax.swing.JOptionPane;
  *
  * @author Mauri
  */
-public class AgregarModificarCancha extends javax.swing.JInternalFrame {
+public class VerProxEncuentros extends javax.swing.JInternalFrame {
     private boolean ok;
-    private CanchaData cd;
+    private EncuentroData ed;
     private Cancha modCancha;
     private MenuPrincipal menu;
+    private int id;
     /**
      * Creates new form AgregarModificarJugador
      */
-    public AgregarModificarCancha(MenuPrincipal menu, CanchaData cd) {
+    public VerProxEncuentros(MenuPrincipal menu, EncuentroData ed) {
         initComponents();
-        this.cd = cd;
+        this.ed = ed;
         modCancha = new Cancha();
         this.menu = menu;
     }
@@ -58,8 +60,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
         jTextLargo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jTextCapacidad = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextDireccion = new javax.swing.JTextField();
 
         jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -148,12 +148,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
         jTextCapacidad.setEditable(false);
         jTextCapacidad.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel4.setText("Direccion");
-
-        jTextDireccion.setEditable(false);
-        jTextDireccion.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,9 +155,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -194,8 +185,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
                                         .addComponent(jCheckBoxEstado))
                                     .addComponent(jTextAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(89, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -217,15 +207,11 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jTextCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jTextCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -264,6 +250,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
+        /*
         int ID=0;
         try{
             ID=Integer.parseInt(jTextNumCancha.getText());
@@ -273,7 +260,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
         }
         String ciudad = jTextCiudad.getText();
         String categoria = jTextCategoria.getText();
-        String direccion = jTextDireccion.getText();
         int ancho = parseInt(jTextAncho.getText());
         int largo = parseInt(jTextLargo.getText());
         int capacidad = parseInt(jTextCapacidad.getText());
@@ -286,7 +272,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
             if (ok == false) {
                 modCancha.setCiudad(ciudad);
                 modCancha.setCategoria(categoria);
-                modCancha.setDireccion(direccion);
                 modCancha.setAncho(ancho);
                 modCancha.setLargo(largo);
                 modCancha.setCapacidad(capacidad);
@@ -297,7 +282,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
             else {
                 modCancha.setCiudad(ciudad);
                 modCancha.setCategoria(categoria);
-                modCancha.setDireccion(direccion);
                 modCancha.setAncho(ancho);
                 modCancha.setLargo(largo);
                 modCancha.setCapacidad(capacidad);
@@ -310,13 +294,13 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
             this.jButtonLimpiarActionPerformed(evt);
         }
         this.jButtonLimpiarActionPerformed(evt);
+*/
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
         jTextNumCancha.setText("");
         jTextCategoria.setText("");
-        jTextDireccion.setText("");
         jTextCiudad.setText("");
         jTextAncho.setText("");
         jTextLargo.setText("");
@@ -335,6 +319,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCheckBoxEstadoActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        /*
         int ID = 0;
         ok = false;
 
@@ -348,14 +333,13 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de cancha ingresar solo numeros");
         }
         else {
-            Iterator it = cd.obtenerCanchas().iterator();
+            Iterator it = cd.obtenerJugadores().iterator();
             while(it.hasNext()){
                 Cancha c1 = (Cancha)it.next();
                 if(ID == c1.getIdCancha()){
-                    ID = c1.getIdCancha();
+                    id = c1.getIdCancha();
                     jTextCategoria.setText(c1.getCategoria());
                     jTextCiudad.setText(c1.getCiudad());
-                    jTextDireccion.setText(c1.getDireccion());
                     jTextAncho.setText(""+c1.getAncho());
                     jTextLargo.setText(""+c1.getLargo());
                     jTextCapacidad.setText(""+c1.getCapacidad());
@@ -366,10 +350,9 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
                     else {
                         jCheckBoxEstado.setSelected(false);
                     }
-                    modCancha.setIdCancha(ID);
+                    modCancha.setIdCancha(id);
                     jTextCategoria.setEditable(true);
                     jTextCiudad.setEditable(true);
-                    jTextDireccion.setEditable(true);
                     jTextAncho.setEditable(true);
                     jTextLargo.setEditable(true);
                     jTextCapacidad.setEditable(true);
@@ -382,7 +365,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
                 this.jButtonLimpiarActionPerformed(evt);
                 jTextCategoria.setEditable(true);
                 jTextCiudad.setEditable(true);
-                jTextDireccion.setEditable(true);
                 jTextAncho.setEditable(true);
                 jTextLargo.setEditable(true);
                 jTextCapacidad.setEditable(true);
@@ -392,6 +374,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
                 jButtonGuardar.setEnabled(true);
             }
         }
+*/
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
 
@@ -405,7 +388,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -414,7 +396,6 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextCapacidad;
     private javax.swing.JTextField jTextCategoria;
     private javax.swing.JTextField jTextCiudad;
-    private javax.swing.JTextField jTextDireccion;
     private javax.swing.JTextField jTextLargo;
     private javax.swing.JTextField jTextNumCancha;
     // End of variables declaration//GEN-END:variables
