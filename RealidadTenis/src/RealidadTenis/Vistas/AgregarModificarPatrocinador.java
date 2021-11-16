@@ -7,6 +7,7 @@ package RealidadTenis.Vistas;
 
 import RealidadTenis.Control.PatrocinadorData;
 import RealidadTenis.Modelo.Patrocinador;
+import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 
 /**
@@ -214,14 +215,14 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
         boolean exc = false;
         Patrocinador p = new Patrocinador();
         try{
-            id = Integer.valueOf(jTextIdPatrocinador.getText());
+            id = parseInt(jTextIdPatrocinador.getText());
             nomb = jTextMarca.getText();
             articulo = jTextArticulo.getText();
-            exc = true;
+            exc = true; //Verifico si hay elementos en cada uno de los jText
         }catch(Exception ex){
-            exc = true;
+            exc = false;
         }
-        if (!exc){
+        if (exc){
             if (pd.patrocinadorExiste(id)){
                 p = pd.buscarPatrocinador(id);
                 p.setMarca(nomb);
@@ -240,7 +241,7 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
                 p.setActivo(false);
                 pd.guardarPatrocinador(p);
             }
-            JOptionPane.showMessageDialog(null,"PAtrocinador guardado con éxito");
+            JOptionPane.showMessageDialog(null,"Patrocinador guardado con éxito");
         }else
         JOptionPane.showMessageDialog(null,"Alguno de los campos no cumple con el tipo de dato o se encuentra vacio.");
         jButtonLimpiarActionPerformed(evt);
@@ -267,6 +268,7 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
             Patrocinador p = new Patrocinador();
             if(pd.patrocinadorExiste(id)){
                 p = pd.buscarPatrocinador(id);
+                
                 jTextMarca.setText(p.getMarca());
                 jTextArticulo.setText(p.getArticulo());
                 

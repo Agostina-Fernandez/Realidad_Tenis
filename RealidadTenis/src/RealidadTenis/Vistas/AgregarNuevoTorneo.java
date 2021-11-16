@@ -5,17 +5,32 @@
  */
 package RealidadTenis.Vistas;
 
+import RealidadTenis.Control.TorneoData;
+import RealidadTenis.Modelo.Torneo;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mauri
  */
 public class AgregarNuevoTorneo extends javax.swing.JInternalFrame {
-
+    private TorneoData td;
+    private MenuPrincipal menu;
+    private Torneo modTorneo;
+    boolean ok;
     /**
      * Creates new form AñadirNuevoTorneo
      */
-    public AgregarNuevoTorneo() {
+    public AgregarNuevoTorneo(MenuPrincipal menu, TorneoData td) {
         initComponents();
+        ok = false;
+        this.td = td;
+        this.menu = menu;
+        modTorneo = new Torneo();
     }
 
     /**
@@ -27,21 +42,316 @@ public class AgregarNuevoTorneo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButtonSalir = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jCheckBoxEstado = new javax.swing.JCheckBox();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jButtonBuscar = new javax.swing.JButton();
+        jTextID = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jButtonLimpiar = new javax.swing.JButton();
+        jTextNombreCopa = new javax.swing.JTextField();
+        jTextFechaInicio = new javax.swing.JTextField();
+        jTextFechaFin = new javax.swing.JTextField();
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Agregar o modificar un Torneo al sistema");
+
+        jLabel2.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel2.setText("Nombre del torneo");
+
+        jLabel3.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel3.setText("Fecha de inicio del torneo");
+
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
+        jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
+        jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel4.setText("Fecha de fin del torneo");
+
+        jCheckBoxEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 18)); // NOI18N
+        jCheckBoxEstado.setText("Actualmente ACTIVO");
+        jCheckBoxEstado.setEnabled(false);
+
+        jButtonBuscar.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        jTextID.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel1.setText("ID del torneo");
+
+        jLabel6.setText("* Busque para ver disponibilidad");
+
+        jButtonLimpiar.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonLimpiar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
+
+        jTextNombreCopa.setEditable(false);
+        jTextNombreCopa.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jTextFechaInicio.setEditable(false);
+        jTextFechaInicio.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jTextFechaFin.setEditable(false);
+        jTextFechaFin.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
+                                .addGap(19, 19, 19)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonBuscar)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel6)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextNombreCopa, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jTextFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jCheckBoxEstado)))
+                                .addGap(23, 23, 23))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextNombreCopa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(jTextFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jTextFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSalir)
+                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonLimpiar))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.verMenuTorneo();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // TODO add your handling code here:
+        String nombre = jTextNombreCopa.getText();
+        Date fechaInicio = jDateChooser1.getDate();
+        Date fechaFin = jDateChooser2.getDate();
+        
+        LocalDate feInicio = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate feFin = fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        
+        if(!"".equals(nombre) && fechaInicio!=null && fechaFin!=null && fechaInicio.after(fechaFin)){
+            JOptionPane.showMessageDialog(null,"Alguno de los campos se encuentra vacio o las fechas estan erroneas.");
+        }
+        else{
+            if (ok == false) {
+                modTorneo.setNombreCopa(nombre);
+                modTorneo.setFechaInicio(feInicio);
+                modTorneo.setFechaFin(feFin);
+                if(jCheckBoxEstado.isSelected()){
+                    modTorneo.setActivo(true);
+                }
+                else{    
+                    modTorneo.setActivo(false);
+                }
+                td.guardarTorneo(modTorneo);
+            }
+            else {
+                modTorneo.setNombreCopa(nombre);
+                modTorneo.setFechaInicio(feInicio);
+                modTorneo.setFechaFin(feFin);
+                modTorneo.setActivo(jCheckBoxEstado.isSelected());
+
+                td.actualizarTorneo(modTorneo);
+            }
+            jButtonGuardar.setEnabled(false);
+            JOptionPane.showMessageDialog(null,"Torneo cargado con éxito");
+            this.jButtonLimpiarActionPerformed(evt);
+        }
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        int ID = 0;
+        ok = false;
+        try{
+            ID = Integer.parseInt(jTextID.getText());
+        }
+        catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo ID ingresar solo numeros");
+        }
+        if(ID==0){
+            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo ID ingresar solo numeros mayores a cero");
+        }
+        else {
+            Iterator it = td.obtenerTorneos().iterator();
+            System.out.println(td.obtenerTorneos());
+            while(it.hasNext()){
+                Torneo t1 = (Torneo)it.next();
+                if(ID == t1.getIdTorneo()){
+                    ID = t1.getIdTorneo();
+                    jTextNombreCopa.setText(t1.getNombreCopa());
+                    jTextFechaInicio.setText(""+t1.getFechaInicio());
+                    jTextFechaFin.setText(""+t1.getFechaFin());
+                    jDateChooser1.setDate(java.sql.Date.valueOf(t1.getFechaInicio()));
+                    jDateChooser2.setDate(java.sql.Date.valueOf(t1.getFechaInicio()));
+                    
+                    if(t1.isActivo()){
+                        jCheckBoxEstado.setSelected(true);
+                    }
+                    else {
+                        jCheckBoxEstado.setSelected(false);
+                    }
+                    
+                    modTorneo.setIdTorneo(ID);
+                    System.out.println("ID: " + modTorneo.getIdTorneo());
+                    jTextNombreCopa.setEditable(true);
+                    jCheckBoxEstado.setEnabled(true);
+                    jButtonGuardar.setEnabled(true);
+                    ok = true;
+                }
+            }
+            if(ok == false){
+                this.jButtonLimpiarActionPerformed(evt);
+                jTextNombreCopa.setEditable(true);
+                jTextID.setText(String.valueOf(ID));
+                jCheckBoxEstado.setEnabled(true);
+                JOptionPane.showMessageDialog(this ,"El "+ID+" ,está disponible para usar");
+                jButtonGuardar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        jTextID.setText("");
+        jTextFechaInicio.setText("");
+        jTextFechaFin.setText("");
+        jTextNombreCopa.setText("");
+        jCheckBoxEstado.setSelected(false);
+        jButtonGuardar.setEnabled(false);
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JCheckBox jCheckBoxEstado;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jTextFechaFin;
+    private javax.swing.JTextField jTextFechaInicio;
+    private javax.swing.JTextField jTextID;
+    private javax.swing.JTextField jTextNombreCopa;
     // End of variables declaration//GEN-END:variables
 }

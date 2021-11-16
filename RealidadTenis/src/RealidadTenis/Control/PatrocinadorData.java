@@ -25,9 +25,8 @@ public class PatrocinadorData {
         try {
             this.conexion = conexion.getConexion();
         } catch (SQLException ex) {
-            System.out.println("Error en la conexión UsuarioData");
+            System.out.println("Error en la conexión PatrocinadorData");
         }
-
     }
     
     public void guardarPatrocinador(Patrocinador patrocinador){
@@ -66,6 +65,7 @@ public class PatrocinadorData {
                 
                 patrocinador.setIdPatrocinador(resultSet.getInt("id_patrocinador"));
                 patrocinador.setMarca(resultSet.getString("marca"));
+                patrocinador.setArticulo(resultSet.getString("articulo"));
                 patrocinador.setActivo(resultSet.getBoolean("activo"));
                 
             }
@@ -149,16 +149,17 @@ public class PatrocinadorData {
     
     public void actualizarPatrocinador(Patrocinador patrocinador){
         String comandoSql = "UPDATE patrocinador "
-                + "SET marca=?, activo=? WHERE id_patrocinador=?";
+                + "SET marca=?, articulo=?, activo=? WHERE id_patrocinador=?";
         
         PreparedStatement prepStat;
         try {
             prepStat = conexion.prepareStatement(comandoSql);
             
             prepStat.setString(1, patrocinador.getMarca());
-            prepStat.setBoolean(2, patrocinador.isActivo());
+            prepStat.setString(2, patrocinador.getArticulo());
+            prepStat.setBoolean(3, patrocinador.isActivo());
             
-            prepStat.setInt(3, patrocinador.getIdPatrocinador());
+            prepStat.setInt(4, patrocinador.getIdPatrocinador());
             
             prepStat.executeUpdate();
             prepStat.close();
