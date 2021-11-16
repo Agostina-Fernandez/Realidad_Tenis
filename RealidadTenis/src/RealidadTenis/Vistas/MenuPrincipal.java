@@ -38,13 +38,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             this.iniciarSesion();
 
-            MenuListados vista = new MenuListados(this);
-            jDesktopPane.removeAll();
-            jDesktopPane.moveToFront(vista);
-            jDesktopPane.repaint();
-            jDesktopPane.add(vista);
-
-            vista.setVisible(true);
+            verMunuListados();
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
@@ -61,6 +55,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public void verMenuZonaDeCarga(){
         MenuZonaDeCarga vista = new MenuZonaDeCarga(this);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verMunuListados(){
+        MenuListados vista = new MenuListados(this);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
@@ -101,6 +105,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public void verVistaVerJugadores() {
         VistaVerJugadores vista = new VistaVerJugadores(this, jugadorData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verVistaVerCanchas() {
+        VistaVerCanchas vista = new VistaVerCanchas(this, canchaData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();

@@ -4,8 +4,8 @@
  */
 package RealidadTenis.Vistas;
 
-import RealidadTenis.Control.JugadorData;
-import RealidadTenis.Modelo.Jugador;
+import RealidadTenis.Control.CanchaData;
+import RealidadTenis.Modelo.Cancha;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,24 +13,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Agostina
  */
-public class VistaVerJugadores extends javax.swing.JInternalFrame {
+public class VistaVerCanchas extends javax.swing.JInternalFrame {
     private DefaultTableModel modelo;
-    private ArrayList<Jugador> jugadores;
-    private ArrayList<Jugador> jugadoresActivos;
-    private JugadorData jugadorData;
+    private ArrayList<Cancha> canchas;
+    private ArrayList<Cancha> canchasActivas;
+    private CanchaData canchaData;
     MenuPrincipal menu;
     
     /**
-     * Creates new form VistaVerJugadores
+     * Creates new form VistaVerCanchas
      */
-    public VistaVerJugadores(MenuPrincipal menu, JugadorData jugadorData) {
+    public VistaVerCanchas(MenuPrincipal menu, CanchaData canchaData) {
         initComponents();
         
-        this.jugadorData = jugadorData;
-        jugadores = (ArrayList<Jugador>) jugadorData.obtenerJugadores();
-        jugadoresActivos = (ArrayList<Jugador>) jugadorData.obtenerUsuariosActivos();
-        modelo = new DefaultTableModel();
         this.menu = menu;
+        this.canchaData = canchaData;
+        modelo = new DefaultTableModel();
+        
+        canchas = (ArrayList<Cancha>) canchaData.obtenerCanchas();
+        canchasActivas = (ArrayList<Cancha>) canchaData.obtenerCanchasEnUso();
         
         vaciarTabla();
         armarCabecera();
@@ -50,16 +51,16 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableJugadores = new javax.swing.JTable();
+        jTableCanchas = new javax.swing.JTable();
         jCheckBoxActivos = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Todos los Jugadores");
+        jLabel1.setText("Todas las Canchas");
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTableJugadores.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCanchas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,10 +71,9 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTableJugadores.setCellSelectionEnabled(true);
-        jScrollPane1.setViewportView(jTableJugadores);
+        jScrollPane1.setViewportView(jTableCanchas);
 
-        jCheckBoxActivos.setLabel("Sólo Jugadores activos");
+        jCheckBoxActivos.setText("Ver canchas disponibles");
         jCheckBoxActivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBoxActivosActionPerformed(evt);
@@ -86,21 +86,21 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jCheckBoxActivos)
-                .addGap(234, 234, 234))
+                .addGap(227, 227, 227))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBoxActivos)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jButton1.setText("Volver");
@@ -117,34 +117,32 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(339, 339, 339)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                        .addGap(255, 255, 255)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(284, 284, 284))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(354, 354, 354))))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(287, 287, 287))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(24, 24, 24))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,7 +158,6 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
         } else {
             llenarTablaTodos();
         }
-        
     }//GEN-LAST:event_jCheckBoxActivosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -173,32 +170,31 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
         ArrayList<Object> titulos = new ArrayList<>();
 
         titulos.add("ID");
-        titulos.add("Apellido");
-        titulos.add("Nombre");
-        titulos.add("DNI");
-        titulos.add("Fecha de Nacimiento");
-        titulos.add("Altura");
-        titulos.add("Peso");
-        titulos.add("Estilo");
-        titulos.add("Diestro");
-        titulos.add("Activo");
+        titulos.add("Número de Cancha");
+        titulos.add("Ciudad");
+        titulos.add("Direccion");
+        titulos.add("Ancho");
+        titulos.add("Largo");
+        titulos.add("Categoria");
+        titulos.add("Capacidad");
+        titulos.add("En Uso");
 
         for (Object titulo: titulos) {
             modelo.addColumn(titulo);
         }
 
-        jTableJugadores.setModel(modelo);
+        jTableCanchas.setModel(modelo);
     }
 
     private void llenarTablaTodos() {
-        for (Jugador j: jugadores) {
-            modelo.addRow(new Object[]{j.getIdJugador(), j.getApellido(), j.getNombre(), j.getDni(), j.getFechaNacimiento(), j.getAltura(), j.getPeso(), j.getEstilo(), j.isDiestro(), j.isActivo()});
+        for (Cancha c : canchas) {
+            modelo.addRow(new Object[]{c.getIdCancha(), c.getNumeroCancha(), c.getCiudad(), c.getDireccion(), c.getAncho(), c.getLargo(), c.getCategoria(), c.getCapacidad(), c.isEnUso()});
         }
     }
     
     private void llenarTablaActivos() {
-        for (Jugador j: jugadoresActivos) {
-            modelo.addRow(new Object[]{j.getIdJugador(), j.getApellido(), j.getNombre(), j.getDni(), j.getFechaNacimiento(), j.getAltura(), j.getPeso(), j.getEstilo(), j.isDiestro(), j.isActivo()});
+        for (Cancha c : canchasActivas) {
+            modelo.addRow(new Object[]{c.getIdCancha(), c.getNumeroCancha(), c.getCiudad(), c.getDireccion(), c.getAncho(), c.getLargo(), c.getCategoria(), c.getCapacidad(), c.isEnUso()});
         }
     }
     
@@ -217,6 +213,6 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTableJugadores;
+    private javax.swing.JTable jTableCanchas;
     // End of variables declaration//GEN-END:variables
 }

@@ -151,7 +151,7 @@ public class CanchaData {
         return cancha;
     }
     
-    public List<Cancha> obtenerJugadores(){
+    public List<Cancha> obtenerCanchas(){
         String comandoSql = "SELECT * FROM cancha";
         List<Cancha> canchas = new ArrayList<>();
         Cancha cancha = null;

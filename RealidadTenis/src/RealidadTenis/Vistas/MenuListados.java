@@ -166,6 +166,8 @@ public class MenuListados extends javax.swing.JInternalFrame {
 
     private void jButtonVerCanchasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCanchasActionPerformed
         // TODO add your handling code here:
+        
+        menu.verVistaVerCanchas();
     }//GEN-LAST:event_jButtonVerCanchasActionPerformed
 
     private void jButtonVerTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTorneosActionPerformed
