@@ -90,6 +90,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         vista.setVisible(true);
     }
+    
+    public void verMenuTorneo(){
+        MenuTorneo vista = new MenuTorneo(this);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verAgregarNuevoTorneo(){
+        AgregarNuevoTorneo vista = new AgregarNuevoTorneo(this, torneoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -123,7 +143,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 803, Short.MAX_VALUE)
+            .addGap(0, 902, Short.MAX_VALUE)
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +168,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,5 +236,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem;
     // End of variables declaration//GEN-END:variables
+
 
 }
