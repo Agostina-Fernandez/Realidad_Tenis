@@ -122,6 +122,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         vista.setVisible(true);
     }
+    
+    public void verVistaVerPatrocinadores(){
+        VistaVerPatrocinadores vista = new VistaVerPatrocinadores(this, patrocinadorData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

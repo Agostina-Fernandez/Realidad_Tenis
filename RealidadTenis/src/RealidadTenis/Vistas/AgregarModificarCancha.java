@@ -348,7 +348,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de cancha ingresar solo numeros");
         }
         else {
-            Iterator it = cd.obtenerJugadores().iterator();
+            Iterator it = cd.obtenerCanchas().iterator();
             while(it.hasNext()){
                 Cancha c1 = (Cancha)it.next();
                 if(ID == c1.getIdCancha()){

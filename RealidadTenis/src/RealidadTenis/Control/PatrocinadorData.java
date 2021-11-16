@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -130,11 +132,11 @@ public class PatrocinadorData {
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Error al buscar el patrocinador en la base de datos");
         }
-    return ret;
+        return ret;
     }
     
     public void modificarEstado(int id){
-        String sql = "UPDATE `patrocinador` SET `activo`=? WHERE `id_patrocinador`=?";
+        String sql = "UPDATE patrocinador SET activo=? WHERE id_patrocinador=?";
         try {
             PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             Patrocinador p = this.buscarPatrocinador(id);
@@ -165,5 +167,59 @@ public class PatrocinadorData {
         } catch (SQLException ex) {
             System.out.println("No se pudo actualizar");
         }
+    }
+    
+    public List<Patrocinador> obtenerPatrocinadores(){
+        Patrocinador patrocinador;
+        String comandoSql = "SELECT * FROM patrocinador";
+        List<Patrocinador> patrocinadores = new ArrayList<>();
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                patrocinador = new Patrocinador();
+                
+                patrocinador.setIdPatrocinador(resultSet.getInt("id_patrocinador"));
+                patrocinador.setMarca(resultSet.getString("marca"));
+                patrocinador.setActivo(resultSet.getBoolean("activo"));
+                
+                patrocinadores.add(patrocinador);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar jugador");
+        }
+        
+        return patrocinadores;
+    }
+    
+    public List<Patrocinador> obtenerPatrocinadoresActivos(){
+        Patrocinador patrocinador;
+        String comandoSql = "SELECT * FROM patrocinador WHERE activo=true";
+        List<Patrocinador> patrocinadores = new ArrayList<>();
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                patrocinador = new Patrocinador();
+                
+                patrocinador.setIdPatrocinador(resultSet.getInt("id_patrocinador"));
+                patrocinador.setMarca(resultSet.getString("marca"));
+                patrocinador.setActivo(resultSet.getBoolean("activo"));
+                
+                patrocinadores.add(patrocinador);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar jugador");
+        }
+        
+        return patrocinadores;
     }
 }

@@ -72,7 +72,7 @@ public class MenuListados extends javax.swing.JInternalFrame {
         jButtonVerTorneos.setBackground(new java.awt.Color(153, 153, 153));
         jButtonVerTorneos.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonVerTorneos.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonVerTorneos.setText("Ver Torneos de un Jugador");
+        jButtonVerTorneos.setText("Ver Encuentros de un Jugador");
         jButtonVerTorneos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerTorneosActionPerformed(evt);
@@ -176,6 +176,8 @@ public class MenuListados extends javax.swing.JInternalFrame {
 
     private void jButtonVerPatrocinadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerPatrocinadoresActionPerformed
         // TODO add your handling code here:
+        
+        menu.verVistaVerPatrocinadores();
     }//GEN-LAST:event_jButtonVerPatrocinadoresActionPerformed
 
 
