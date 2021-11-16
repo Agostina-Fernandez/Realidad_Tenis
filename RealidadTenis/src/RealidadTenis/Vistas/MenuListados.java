@@ -10,12 +10,15 @@ package RealidadTenis.Vistas;
  * @author Win10
  */
 public class MenuListados extends javax.swing.JInternalFrame {
+    MenuPrincipal menu;
 
     /**
      * Creates new form MenuListados
      */
-    public MenuListados() {
+    public MenuListados(MenuPrincipal menu) {
         initComponents();
+        
+        this.menu = menu;
     }
 
     /**
@@ -158,10 +161,13 @@ public class MenuListados extends javax.swing.JInternalFrame {
 
     private void jButtonVerJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerJugadoresActionPerformed
         // TODO add your handling code here:
+        menu.verVistaVerJugadores();
     }//GEN-LAST:event_jButtonVerJugadoresActionPerformed
 
     private void jButtonVerCanchasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerCanchasActionPerformed
         // TODO add your handling code here:
+        
+        menu.verVistaVerCanchas();
     }//GEN-LAST:event_jButtonVerCanchasActionPerformed
 
     private void jButtonVerTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTorneosActionPerformed

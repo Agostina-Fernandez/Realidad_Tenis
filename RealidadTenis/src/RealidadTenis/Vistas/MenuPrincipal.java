@@ -29,17 +29,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         try {
             conexion = new Conexion();
+            canchaData = new CanchaData(conexion);
+            contratoData = new ContratoData(conexion);
+            encuentroData = new EncuentroData(conexion);
+            jugadorData = new JugadorData(conexion);
+            patrocinadorData = new PatrocinadorData(conexion);
+            torneoData = new TorneoData(conexion);
+
+            this.iniciarSesion();
+
+            verMunuListados();
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
-        canchaData = new CanchaData(conexion);
-        contratoData = new ContratoData(conexion);
-        encuentroData = new EncuentroData(conexion);
-        jugadorData = new JugadorData(conexion);
-        patrocinadorData = new PatrocinadorData(conexion);
-        torneoData = new TorneoData(conexion);
-        
-        this.iniciarSesion();
     }
     
     public void iniciarSesion(){
@@ -53,6 +55,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public void verMenuZonaDeCarga(){
         MenuZonaDeCarga vista = new MenuZonaDeCarga(this);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verMunuListados(){
+        MenuListados vista = new MenuListados(this);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
@@ -91,8 +103,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
-    public void verMenuTorneo(){
-        MenuTorneo vista = new MenuTorneo(this);
+    public void verVistaVerJugadores() {
+        VistaVerJugadores vista = new VistaVerJugadores(this, jugadorData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
@@ -101,8 +113,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
-    public void verAgregarNuevoTorneo(){
-        AgregarNuevoTorneo vista = new AgregarNuevoTorneo(this, torneoData);
+    public void verVistaVerCanchas() {
+        VistaVerCanchas vista = new VistaVerCanchas(this, canchaData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
@@ -143,7 +155,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 902, Short.MAX_VALUE)
+            .addGap(0, 803, Short.MAX_VALUE)
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +180,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +250,5 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem;
     // End of variables declaration//GEN-END:variables
-
 
 }
