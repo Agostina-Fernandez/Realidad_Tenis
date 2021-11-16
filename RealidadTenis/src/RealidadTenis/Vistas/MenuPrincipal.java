@@ -38,7 +38,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             this.iniciarSesion();
 
-            verMunuListados();
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
