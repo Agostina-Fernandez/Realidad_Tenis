@@ -105,6 +105,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public void verVistaVerJugadores() {
         VistaVerJugadores vista = new VistaVerJugadores(this, jugadorData);
 =======
@@ -112,6 +113,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuEncuentro vista = new MenuEncuentro(this, encuentroData);
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> Stashed changes
     public void verMenuEncuentro(){
         MenuEncuentro vista = new MenuEncuentro(this, encuentroData);
         jDesktopPane.removeAll();
@@ -128,10 +131,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
         jDesktopPane.add(vista);
+<<<<<<< Updated upstream
+=======
 
         vista.setVisible(true);
     }
     
+    public void verModificarEncuentro(){
+        VerModificarEncuentro vista = new VerModificarEncuentro(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verProxEncuentros(){
+        VerProxEncuentros vista = new VerProxEncuentros(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+>>>>>>> Stashed changes
+
+        vista.setVisible(true);
+    }
+    
+<<<<<<< Updated upstream
     public void verModificarEncuentro(){
         VerModificarEncuentro vista = new VerModificarEncuentro(this, encuentroData);
         jDesktopPane.removeAll();
@@ -192,6 +219,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     /**
