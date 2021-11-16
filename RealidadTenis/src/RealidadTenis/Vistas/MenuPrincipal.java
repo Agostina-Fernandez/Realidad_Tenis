@@ -29,17 +29,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         try {
             conexion = new Conexion();
+            canchaData = new CanchaData(conexion);
+            contratoData = new ContratoData(conexion);
+            encuentroData = new EncuentroData(conexion);
+            jugadorData = new JugadorData(conexion);
+            patrocinadorData = new PatrocinadorData(conexion);
+            torneoData = new TorneoData(conexion);
+
+            this.iniciarSesion();
+
+            MenuListados vista = new MenuListados(this);
+            jDesktopPane.removeAll();
+            jDesktopPane.moveToFront(vista);
+            jDesktopPane.repaint();
+            jDesktopPane.add(vista);
+
+            vista.setVisible(true);
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
-        canchaData = new CanchaData(conexion);
-        contratoData = new ContratoData(conexion);
-        encuentroData = new EncuentroData(conexion);
-        jugadorData = new JugadorData(conexion);
-        patrocinadorData = new PatrocinadorData(conexion);
-        torneoData = new TorneoData(conexion);
-        
-        this.iniciarSesion();
     }
     
     public void iniciarSesion(){
@@ -83,6 +91,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public void verAgregarModificarPatrocinador(){
         AgregarModificarPatrocinador vista = new AgregarModificarPatrocinador(this, patrocinadorData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verVistaVerJugadores() {
+        VistaVerJugadores vista = new VistaVerJugadores(this, jugadorData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
