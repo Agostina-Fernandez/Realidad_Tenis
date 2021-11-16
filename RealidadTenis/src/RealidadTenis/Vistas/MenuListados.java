@@ -172,6 +172,8 @@ public class MenuListados extends javax.swing.JInternalFrame {
 
     private void jButtonVerTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTorneosActionPerformed
         // TODO add your handling code here:
+        
+        menu.verVistaEncuentrosJugador();
     }//GEN-LAST:event_jButtonVerTorneosActionPerformed
 
     private void jButtonVerPatrocinadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerPatrocinadoresActionPerformed

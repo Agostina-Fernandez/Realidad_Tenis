@@ -18,7 +18,7 @@ public class VistaVerCanchas extends javax.swing.JInternalFrame {
     private ArrayList<Cancha> canchas;
     private ArrayList<Cancha> canchasActivas;
     private CanchaData canchaData;
-    MenuPrincipal menu;
+    private MenuPrincipal menu;
     
     /**
      * Creates new form VistaVerCanchas

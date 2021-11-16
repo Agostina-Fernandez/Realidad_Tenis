@@ -268,7 +268,7 @@ public class EncuentroData {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             ResultSet resultSet = prepStat.executeQuery();
             
-            if (resultSet.next()){
+            while (resultSet.next()){
                 encuentro = new Encuentro();
                 
                 jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
@@ -315,7 +315,7 @@ public class EncuentroData {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             ResultSet resultSet = prepStat.executeQuery();
             
-            if (resultSet.next()){
+            while (resultSet.next()){
                 encuentro = new Encuentro();
                 
                 jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
@@ -358,5 +358,103 @@ public class EncuentroData {
         } catch (SQLException ex) {
             System.out.println("Error al eliminar Encuentro");
         }
+    }
+    
+    public List<Encuentro> obtenerEncuentrosActivosJugador(Jugador jugador){
+        String comandoSql = "SELECT * FROM encuentro WHERE activo=true AND (id_jugador1=? OR id_jugador2=?)";
+        List<Encuentro> encuentros = new ArrayList<>();
+        Encuentro encuentro = null;
+        
+        try {
+            Jugador jugador1;
+            Jugador jugador2;
+            Jugador ganador;
+            Cancha cancha;
+            JugadorData jugadorData = new JugadorData(con);
+            CanchaData canchaData = new CanchaData(con);
+            
+            
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            prepStat.setInt(1, jugador.getIdJugador());
+            prepStat.setInt(2, jugador.getIdJugador());
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                encuentro = new Encuentro();
+                
+                jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
+                jugador2 = jugadorData.buscarJugador(resultSet.getInt("id_jugador2"));
+                ganador = jugadorData.buscarJugador(resultSet.getInt("id_ganador"));
+                cancha = canchaData.buscarCancha(resultSet.getInt("id_cancha"));
+                
+                encuentro.setIdEncuentro(resultSet.getInt("id_encuentro"));
+                encuentro.setJugador1(jugador1);
+                encuentro.setJugador2(jugador2);
+                encuentro.setGanador(ganador);
+                encuentro.setCancha(cancha);
+                encuentro.setFecha(resultSet.getDate("fecha").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                encuentro.setHora(resultSet.getTime("hora").toLocalTime());
+                encuentro.setEstado(resultSet.getString("estado"));
+                encuentro.setActivo(resultSet.getBoolean("activo"));
+                encuentro.setResultadoJ1(resultSet.getInt("resultado_j1"));
+                encuentro.setResultadoJ2(resultSet.getInt("resultado_j2"));
+                
+                encuentros.add(encuentro);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+        }
+        
+        return encuentros;
+    }
+    
+    public List<Encuentro> obtenerEncuentrosJugador(Jugador jugador){
+        String comandoSql = "SELECT * FROM encuentro WHERE id_jugador1=? OR id_jugador2=?";
+        List<Encuentro> encuentros = new ArrayList<>();
+        Encuentro encuentro = null;
+        
+        try {
+            Jugador jugador1;
+            Jugador jugador2;
+            Jugador ganador;
+            Cancha cancha;
+            JugadorData jugadorData = new JugadorData(con);
+            CanchaData canchaData = new CanchaData(con);
+            
+            
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            prepStat.setInt(1, jugador.getIdJugador());
+            prepStat.setInt(2, jugador.getIdJugador());
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                encuentro = new Encuentro();
+                
+                jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
+                jugador2 = jugadorData.buscarJugador(resultSet.getInt("id_jugador2"));
+                ganador = jugadorData.buscarJugador(resultSet.getInt("id_ganador"));
+                cancha = canchaData.buscarCancha(resultSet.getInt("id_cancha"));
+                
+                encuentro.setIdEncuentro(resultSet.getInt("id_encuentro"));
+                encuentro.setJugador1(jugador1);
+                encuentro.setJugador2(jugador2);
+                encuentro.setGanador(ganador);
+                encuentro.setCancha(cancha);
+                encuentro.setFecha(resultSet.getDate("fecha").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                encuentro.setHora(resultSet.getTime("hora").toLocalTime());
+                encuentro.setEstado(resultSet.getString("estado"));
+                encuentro.setActivo(resultSet.getBoolean("activo"));
+                encuentro.setResultadoJ1(resultSet.getInt("resultado_j1"));
+                encuentro.setResultadoJ2(resultSet.getInt("resultado_j2"));
+                
+                encuentros.add(encuentro);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+        }
+        
+        return encuentros;
     }
 }

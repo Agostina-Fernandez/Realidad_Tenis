@@ -18,7 +18,7 @@ public class VistaVerPatrocinadores extends javax.swing.JInternalFrame {
     private ArrayList<Patrocinador> patrocinadores;
     private ArrayList<Patrocinador> patrocinadoresActivos;
     private PatrocinadorData patrocinadorData;
-    MenuPrincipal menu;
+    private MenuPrincipal menu;
 
     /**
      * Creates new form VistaVerPatrocinadores

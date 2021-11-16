@@ -18,7 +18,7 @@ public class VistaVerJugadores extends javax.swing.JInternalFrame {
     private ArrayList<Jugador> jugadores;
     private ArrayList<Jugador> jugadoresActivos;
     private JugadorData jugadorData;
-    MenuPrincipal menu;
+    private MenuPrincipal menu;
     
     /**
      * Creates new form VistaVerJugadores
