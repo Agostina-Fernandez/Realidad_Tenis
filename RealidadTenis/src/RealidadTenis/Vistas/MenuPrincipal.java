@@ -104,11 +104,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public void verVistaVerJugadores() {
         VistaVerJugadores vista = new VistaVerJugadores(this, jugadorData);
 =======
     public void verMenuEncuentro(){
         MenuEncuentro vista = new MenuEncuentro(this, encuentroData);
+>>>>>>> Stashed changes
+=======
+    public void verMenuEncuentro(){
+        MenuEncuentro vista = new MenuEncuentro(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verCargarEncuentro(){
+        VerCargarEncuentro vista = new VerCargarEncuentro(this, encuentroData, torneoData, jugadorData, canchaData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verModificarEncuentro(){
+        VerModificarEncuentro vista = new VerModificarEncuentro(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verProxEncuentros(){
+        VerProxEncuentros vista = new VerProxEncuentros(this, encuentroData);
 >>>>>>> Stashed changes
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
@@ -118,6 +153,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     public void verVistaVerCanchas() {
         VistaVerCanchas vista = new VistaVerCanchas(this, canchaData);
@@ -156,6 +192,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+=======
+>>>>>>> Stashed changes
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
