@@ -8,8 +8,8 @@ public class Cancha {
     private int idCancha;
     private String ciudad;
     private String direccion;
-    private int ancho;
-    private int largo;
+    private float ancho;
+    private float largo;
     private String categoria;
     private int capacidad;
     private int numeroCancha;
@@ -19,7 +19,7 @@ public class Cancha {
     
     public Cancha(){}
 
-    public Cancha(String ciudad, String direccion, int ancho, int largo, String categoria, int capacidad, int numeroCancha, boolean enUso) {
+    public Cancha(String ciudad, String direccion, float ancho, float largo, String categoria, int capacidad, int numeroCancha, boolean enUso) {
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.ancho = ancho;
@@ -30,7 +30,7 @@ public class Cancha {
         this.enUso = enUso;
     }
 
-    public Cancha(int idCancha, String ciudad, String direccion, int ancho, int largo, String categoria, int capacidad, int numeroCancha, boolean enUso) {
+    public Cancha(int idCancha, String ciudad, String direccion, float ancho, float largo, String categoria, int capacidad, int numeroCancha, boolean enUso) {
         this.idCancha = idCancha;
         this.ciudad = ciudad;
         this.direccion = direccion;
@@ -56,11 +56,11 @@ public class Cancha {
         this.direccion = direccion;
     }
 
-    public void setAncho(int ancho) {
+    public void setAncho(float ancho) {
         this.ancho = ancho;
     }
 
-    public void setLargo(int largo) {
+    public void setLargo(float largo) {
         this.largo = largo;
     }
 
@@ -94,11 +94,11 @@ public class Cancha {
         return direccion;
     }
 
-    public int getAncho() {
+    public float getAncho() {
         return ancho;
     }
 
-    public int getLargo() {
+    public float getLargo() {
         return largo;
     }
 

@@ -60,8 +60,8 @@ public class Jugador {
         this.dni = dni;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formato);
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public void setAltura(double altura) {

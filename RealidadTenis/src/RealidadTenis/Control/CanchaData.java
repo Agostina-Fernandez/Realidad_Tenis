@@ -30,8 +30,8 @@ public class CanchaData {
             
             prepStat.setString(1, cancha.getCiudad());
             prepStat.setString(2, cancha.getDireccion());
-            prepStat.setInt(3, cancha.getAncho());
-            prepStat.setInt(4, cancha.getLargo());
+            prepStat.setFloat(3, cancha.getAncho());
+            prepStat.setFloat(4, cancha.getLargo());
             prepStat.setString(5, cancha.getCategoria());
             prepStat.setInt(6, cancha.getCapacidad());
             prepStat.setInt(7, cancha.getNumeroCancha());
@@ -40,9 +40,9 @@ public class CanchaData {
             prepStat.executeUpdate();
             ResultSet resultSet = prepStat.getGeneratedKeys(); //recupero el Id
             
-            if (resultSet.next()){
+            /*if (resultSet.next()){
                 cancha.setIdCancha(resultSet.getInt("id_cancha"));
-            }
+            }*/
             
             prepStat.close();
             
@@ -101,8 +101,8 @@ public class CanchaData {
             
             prepStat.setString(1, cancha.getCiudad());
             prepStat.setString(2, cancha.getDireccion());
-            prepStat.setInt(3, cancha.getAncho());
-            prepStat.setInt(4, cancha.getLargo());
+            prepStat.setFloat(3, cancha.getAncho());
+            prepStat.setFloat(4, cancha.getLargo());
             prepStat.setString(5, cancha.getCategoria());
             prepStat.setInt(6, cancha.getCapacidad());
             prepStat.setInt(7, cancha.getNumeroCancha());

@@ -29,29 +29,27 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="427" max="-2" attributes="0"/>
-                          <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jTextPeso" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Component id="jTextAltura" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Component id="jTextDni" min="-2" pref="186" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jTextFecha" min="-2" pref="186" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jDateChooser1" min="-2" pref="148" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextPeso" min="-2" pref="186" max="-2" attributes="0"/>
-                              <Component id="jTextAltura" min="-2" pref="186" max="-2" attributes="0"/>
-                              <Component id="jTextDni" min="-2" pref="186" max="-2" attributes="0"/>
-                              <Component id="jTextFecha" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
-                              <Component id="jTextApellido" min="-2" pref="347" max="-2" attributes="0"/>
-                              <Component id="jTextNombre" alignment="0" min="-2" pref="347" max="-2" attributes="0"/>
-                              <Component id="jTextEstilo" min="-2" pref="347" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jTextApellido" min="-2" pref="347" max="-2" attributes="0"/>
+                          <Component id="jTextNombre" alignment="0" min="-2" pref="347" max="-2" attributes="0"/>
+                          <Component id="jTextEstilo" min="-2" pref="347" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

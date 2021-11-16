@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -120,6 +118,8 @@ public class JugadorData {
             prepStat.setBoolean(8, jugador.isDiestro());
             prepStat.setBoolean(9, jugador.isActivo());
             
+            prepStat.setInt(10, jugador.getIdJugador());
+            
             System.out.println("prep act jugador: " + prepStat);
             prepStat.executeUpdate();
             
@@ -147,7 +147,7 @@ public class JugadorData {
                 jugador.setNombre(resultSet.getString("nombre"));
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
-                jugador.setFechaNacimiento(Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
+                jugador.setFechaNacimiento(resultSet.getDate("fecha_nacimiento").toLocalDate());
                 System.out.println("fecha de nac: " + Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
                 jugador.setAltura(resultSet.getDouble("altura"));
                 jugador.setPeso(resultSet.getDouble("peso"));
@@ -183,7 +183,7 @@ public class JugadorData {
                 jugador.setNombre(resultSet.getString("nombre"));
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
-                jugador.setFechaNacimiento(Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
+                jugador.setFechaNacimiento(resultSet.getDate("fecha_nacimiento").toLocalDate());
                 System.out.println("fecha de nac: " + Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
                 jugador.setAltura(resultSet.getDouble("altura"));
                 jugador.setPeso(resultSet.getDouble("peso"));
@@ -220,7 +220,7 @@ public class JugadorData {
                 jugador.setNombre(resultSet.getString("nombre"));
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
-                jugador.setFechaNacimiento(Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
+                jugador.setFechaNacimiento(resultSet.getDate("fecha_nacimiento").toLocalDate());
                 System.out.println("fecha de nac: " + Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
                 jugador.setAltura(resultSet.getDouble("altura"));
                 jugador.setPeso(resultSet.getDouble("peso"));

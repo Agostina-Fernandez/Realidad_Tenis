@@ -7,7 +7,7 @@ package RealidadTenis.Vistas;
 
 /**
  *
- * @author Win10
+ * @author Mauri
  */
 public class MenuTorneo extends javax.swing.JInternalFrame {
 

@@ -46,6 +46,8 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jButtonLimpiar = new javax.swing.JButton();
         jButtonEditable = new javax.swing.JButton();
+        jTextArticulo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -123,6 +125,12 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextArticulo.setEditable(false);
+        jTextArticulo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel3.setText("Articulo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,19 +140,23 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(42, 42, 42)
                                 .addComponent(jTextIdPatrocinador, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
                                 .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(134, 134, 134)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonEditable)
@@ -178,7 +190,11 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jCheckBoxEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEditable)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonEditable)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalir)
@@ -194,11 +210,13 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int id = 0;
         String nomb = "";
+        String articulo = "";
         boolean exc = false;
         Patrocinador p = new Patrocinador();
         try{
             id = Integer.valueOf(jTextIdPatrocinador.getText());
             nomb = jTextMarca.getText();
+            articulo = jTextArticulo.getText();
             exc = true;
         }catch(Exception ex){
             exc = true;
@@ -207,12 +225,14 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
             if (pd.patrocinadorExiste(id)){
                 p = pd.buscarPatrocinador(id);
                 p.setMarca(nomb);
+                p.setArticulo(articulo);
                 if(jCheckBoxEstado.isSelected()!= p.isActivo())
                 pd.modificarEstado(id);
                 pd.actualizarPatrocinador(p);
                 p = pd.buscarPatrocinador(id);
             }else{
                 p.setMarca(nomb);
+                p.setArticulo(articulo);
                 p.setIdPatrocinador(id);
                 if(jCheckBoxEstado.isSelected())
                 p.setActivo(true);
@@ -248,10 +268,12 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
             if(pd.patrocinadorExiste(id)){
                 p = pd.buscarPatrocinador(id);
                 jTextMarca.setText(p.getMarca());
+                jTextArticulo.setText(p.getArticulo());
                 
                 jButtonLimpiar.setEnabled(true);
                 jButtonEditable.setEnabled(true);
                 
+                jTextArticulo.setEditable(false);
                 jTextMarca.setEditable(false);
                 jCheckBoxEstado.setEnabled(false);
                 
@@ -263,6 +285,7 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
                 jButtonGuardar.setEnabled(true);
                 jTextIdPatrocinador.setEditable(false);
                 jTextMarca.setEditable(true);
+                jTextArticulo.setEditable(true);
                 jCheckBoxEstado.setEnabled(true);
             }
         }
@@ -271,6 +294,7 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
         // TODO add your handling code here:
         jTextMarca.setText("");
+        jTextArticulo.setText("");
         jTextIdPatrocinador.setText("");
         jButtonLimpiar.setEnabled(true);
         jTextIdPatrocinador.setEditable(true);
@@ -285,6 +309,7 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
         jTextIdPatrocinador.setEditable(false);
         jButtonLimpiar.setEnabled(false);
         jTextMarca.setEditable(true);
+        jTextArticulo.setEditable(true);
         jCheckBoxEstado.setEnabled(true);
         jButtonGuardar.setEnabled(true);
     }//GEN-LAST:event_jButtonEditableActionPerformed
@@ -299,8 +324,10 @@ public class AgregarModificarPatrocinador extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox jCheckBoxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jTextArticulo;
     private javax.swing.JTextField jTextIdPatrocinador;
     private javax.swing.JTextField jTextMarca;
     // End of variables declaration//GEN-END:variables

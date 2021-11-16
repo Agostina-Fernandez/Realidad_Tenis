@@ -10,10 +10,9 @@ import RealidadTenis.Modelo.Jugador;
 import static java.lang.Double.parseDouble;
 import static java.lang.Float.parseFloat;
 import static java.lang.Integer.parseInt;
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Date;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 
@@ -26,7 +25,6 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
     private JugadorData jd;
     private Jugador modJugador;
     private MenuPrincipal menu;
-    private int id;
     /**
      * Creates new form AgregarModificarJugador
      */
@@ -194,26 +192,25 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel3))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(427, 427, 427)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel8)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel10)
-                                .addComponent(jLabel11))
-                            .addGap(150, 150, 150)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextDni, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11))
+                        .addGap(150, 150, 150)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextDni, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +326,7 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
         Double altura = parseDouble(jTextAltura.getText());
         float peso = parseFloat(jTextPeso.getText());
         String estilo = jTextEstilo.getText();
-        Date fecha = (Date)jDateChooser1.getDate();
+        Date fecha = jDateChooser1.getDate();
         
 
         if(fecha==null||ID==0||apellido==null||nombre==null)
@@ -340,19 +337,24 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
             if (ok == false) {
                 modJugador.setNombre(nombre);
                 modJugador.setApellido(apellido);
-                modJugador.setFechaNacimiento(fe.toString());
+                modJugador.setFechaNacimiento(fe);
                 modJugador.setDni(dni);
                 modJugador.setAltura(altura);
+                modJugador.setPeso(peso);
+                modJugador.setEstilo(estilo);
                 modJugador.setActivo(jCheckBoxEstado.isSelected());
                 modJugador.setDiestro(jCheckBoxDiestro.isSelected());
+                
                 jd.guardarJugador(modJugador);
             }
             else {
                 modJugador.setNombre(nombre);
                 modJugador.setApellido(apellido);
-                modJugador.setFechaNacimiento(fe.toString());
+                modJugador.setFechaNacimiento(fe);
                 modJugador.setDni(dni);
                 modJugador.setAltura(altura);
+                modJugador.setPeso(peso);
+                modJugador.setEstilo(estilo);
                 modJugador.setActivo(jCheckBoxEstado.isSelected());
                 modJugador.setDiestro(jCheckBoxDiestro.isSelected());
 
@@ -402,19 +404,18 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,"Volver a cargar, en campo ID ingresar solo numeros");
         }
         else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
             Iterator it = jd.obtenerJugadores().iterator();
             while(it.hasNext()){
                 Jugador j1 = (Jugador)it.next();
                 if(ID == j1.getIdJugador()){
-                    id = j1.getIdJugador();
+                    ID = j1.getIdJugador();
                     jTextApellido.setText(j1.getApellido());
                     jTextNombre.setText(j1.getNombre());
                     jTextDni.setText(""+j1.getDni());
                     jTextAltura.setText(""+j1.getAltura());
                     jTextPeso.setText(""+j1.getPeso());
                     jTextEstilo.setText(""+j1.getEstilo());
-                    jTextFecha.setText(j1.getFechaNacimiento().format(formatter));
+                    jTextFecha.setText(""+j1.getFechaNacimiento());
                     jDateChooser1.setDate(java.sql.Date.valueOf(j1.getFechaNacimiento()));
 
                     if(j1.isActivo()){
@@ -430,7 +431,7 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
                     else {
                         jCheckBoxDiestro.setSelected(false);
                     }
-                    modJugador.setIdJugador(id);
+                    modJugador.setIdJugador(ID);
                     jTextApellido.setEditable(true);
                     jTextNombre.setEditable(true);
                     jTextDni.setEditable(true);
