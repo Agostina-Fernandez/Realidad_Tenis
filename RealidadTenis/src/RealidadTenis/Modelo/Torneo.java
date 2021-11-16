@@ -20,13 +20,13 @@ public class Torneo {
     public Torneo() {
     }
 
-    public Torneo(String nombreCopa, String fechaInicio, String fechaFin) {
+    public Torneo(String nombreCopa, LocalDate fechaInicio, LocalDate fechaFin) {
         this.nombreCopa = nombreCopa;
-        this.fechaInicio = LocalDate.parse(fechaInicio, formato);
-        this.fechaFin = LocalDate.parse(fechaFin, formato);
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
     }
     
-    public Torneo(int id, String nombreCopa, String fechaInicio, String fechaFin) {
+    public Torneo(int id, String nombreCopa, LocalDate fechaInicio, LocalDate fechaFin) {
         this(nombreCopa, fechaInicio, fechaFin);
         this.idTorneo = id;
     }
@@ -85,6 +85,6 @@ public class Torneo {
 
     @Override
     public String toString() {
-        return "Torneo{" + "idTorneo=" + idTorneo + ", nombreCopa=" + nombreCopa + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", activo=" + activo + ", formato=" + formato + '}';
+        return "Id: " + idTorneo + " - Nombre copa: " + nombreCopa;
     }
 }

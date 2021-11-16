@@ -103,6 +103,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+
     public void verVistaVerJugadores() {
         VistaVerJugadores vista = new VistaVerJugadores(this, jugadorData);
         jDesktopPane.removeAll();
@@ -113,8 +114,68 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+    public void verMenuTorneo(){
+        MenuTorneo vista = new MenuTorneo(this);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    public void verAgregarNuevoTorneo(){
+        AgregarNuevoTorneo vista = new AgregarNuevoTorneo(this, torneoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verMenuEncuentro(){
+        MenuEncuentro vista = new MenuEncuentro(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verCargarEncuentro(){
+        VerCargarEncuentro vista = new VerCargarEncuentro(this, encuentroData, torneoData, jugadorData, canchaData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verModificarEncuentro(){
+        VerModificarEncuentro vista = new VerModificarEncuentro(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verProxEncuentros(){
+        VerProxEncuentros vista = new VerProxEncuentros(this, encuentroData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
     public void verVistaVerCanchas() {
         VistaVerCanchas vista = new VistaVerCanchas(this, canchaData);
+        
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
@@ -133,6 +194,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

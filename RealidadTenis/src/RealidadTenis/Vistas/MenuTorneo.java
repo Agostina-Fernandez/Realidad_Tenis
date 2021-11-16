@@ -10,12 +10,13 @@ package RealidadTenis.Vistas;
  * @author Mauri
  */
 public class MenuTorneo extends javax.swing.JInternalFrame {
-
+    MenuPrincipal menu;
     /**
      * Creates new form MenuTorneo
      */
-    public MenuTorneo() {
+    public MenuTorneo(MenuPrincipal menu) {
         initComponents();
+        this.menu = menu;
     }
 
     /**
@@ -35,6 +36,7 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
         jButtonVerRanking = new javax.swing.JButton();
         jButtonVerJugadoresDeTorneo = new javax.swing.JButton();
         jButtonVerTorneosActivos = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -49,7 +51,7 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
         jButtonNuevoTorneo.setBackground(new java.awt.Color(153, 153, 153));
         jButtonNuevoTorneo.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonNuevoTorneo.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonNuevoTorneo.setText("Nuevo Torneo");
+        jButtonNuevoTorneo.setText("Agregar o modificar un Torneo");
         jButtonNuevoTorneo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoTorneoActionPerformed(evt);
@@ -86,6 +88,16 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -98,6 +110,10 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
                     .addComponent(jButtonVerJugadoresDeTorneo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonVerTorneosActivos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +126,9 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
                 .addComponent(jButtonVerTorneosActivos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jButtonVerJugadoresDeTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSalir)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -137,7 +155,7 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -158,6 +176,7 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
 
     private void jButtonNuevoTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoTorneoActionPerformed
         // TODO add your handling code here:
+        menu.verAgregarNuevoTorneo();
     }//GEN-LAST:event_jButtonNuevoTorneoActionPerformed
 
     private void jButtonVerRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerRankingActionPerformed
@@ -172,9 +191,15 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonVerTorneosActivosActionPerformed
 
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.iniciarSesion();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonNuevoTorneo;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonVerJugadoresDeTorneo;
     private javax.swing.JButton jButtonVerRanking;
     private javax.swing.JButton jButtonVerTorneosActivos;

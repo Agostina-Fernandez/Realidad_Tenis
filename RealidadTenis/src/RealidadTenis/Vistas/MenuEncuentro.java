@@ -5,17 +5,23 @@
  */
 package RealidadTenis.Vistas;
 
+import RealidadTenis.Control.EncuentroData;
+
 /**
  *
  * @author Win10
  */
 public class MenuEncuentro extends javax.swing.JInternalFrame {
-
+    
+    private MenuPrincipal menu;
+    private EncuentroData encuentroData;
     /**
      * Creates new form MenuEncuentro
      */
-    public MenuEncuentro() {
+    public MenuEncuentro(MenuPrincipal menu, EncuentroData encuentroData) {
         initComponents();
+        this.menu = menu;
+        this.encuentroData = encuentroData;
     }
 
     /**
@@ -142,14 +148,17 @@ public class MenuEncuentro extends javax.swing.JInternalFrame {
 
     private void jButtonCargarEncuentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarEncuentroActionPerformed
         // TODO add your handling code here:
+        menu.verCargarEncuentro();
     }//GEN-LAST:event_jButtonCargarEncuentroActionPerformed
 
     private void jButtonModificarEncuentroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEncuentroActionPerformed
         // TODO add your handling code here:
+        menu.verModificarEncuentro();
     }//GEN-LAST:event_jButtonModificarEncuentroActionPerformed
 
     private void jButtonVerProxEncuentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerProxEncuentrosActionPerformed
         // TODO add your handling code here:
+        menu.verProxEncuentros();
     }//GEN-LAST:event_jButtonVerProxEncuentrosActionPerformed
 
 

@@ -8,6 +8,7 @@ import RealidadTenis.Modelo.Cancha;
 import RealidadTenis.Modelo.Conexion;
 import RealidadTenis.Modelo.Encuentro;
 import RealidadTenis.Modelo.Jugador;
+import RealidadTenis.Modelo.Torneo;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -163,6 +164,7 @@ public class EncuentroData {
             Cancha cancha;
             JugadorData jugadorData = new JugadorData(con);
             CanchaData canchaData = new CanchaData(con);
+            TorneoData torneoData = new TorneoData(con);
             
             
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
@@ -209,28 +211,31 @@ public class EncuentroData {
             Jugador jugador2;
             Jugador ganador;
             Cancha cancha;
+            Torneo torneo;
             JugadorData jugadorData = new JugadorData(con);
             CanchaData canchaData = new CanchaData(con);
+            TorneoData torneoData = new TorneoData(con);
             
             
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             ResultSet resultSet = prepStat.executeQuery();
             
-            if (resultSet.next()){
+            while(resultSet.next()){
                 encuentro = new Encuentro();
                 
                 jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
                 jugador2 = jugadorData.buscarJugador(resultSet.getInt("id_jugador2"));
                 ganador = jugadorData.buscarJugador(resultSet.getInt("id_ganador"));
                 cancha = canchaData.buscarCancha(resultSet.getInt("id_cancha"));
+                torneo = torneoData.buscarTorneo(resultSet.getInt("id_torneo"));
                 
                 encuentro.setIdEncuentro(resultSet.getInt("id_encuentro"));
+                encuentro.setTorneo(torneo);
                 encuentro.setJugador1(jugador1);
                 encuentro.setJugador2(jugador2);
                 encuentro.setGanador(ganador);
                 encuentro.setCancha(cancha);
-                encuentro.setFecha(resultSet.getDate("fecha").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-                encuentro.setHora(resultSet.getTime("hora").toLocalTime());
+                encuentro.setFecha(resultSet.getDate("fecha").toLocalDate());
                 encuentro.setEstado(resultSet.getString("estado"));
                 encuentro.setActivo(resultSet.getBoolean("activo"));
                 encuentro.setResultadoJ1(resultSet.getInt("resultado_j1"));
@@ -240,7 +245,7 @@ public class EncuentroData {
             }
             
         } catch (SQLException ex) {
-            System.out.println("Error al buscar");
+            System.out.println("Error al buscar encuentros");
         }
         
         return encuentros;
