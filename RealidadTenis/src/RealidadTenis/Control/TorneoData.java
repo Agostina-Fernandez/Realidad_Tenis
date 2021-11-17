@@ -268,14 +268,14 @@ public class TorneoData {
         }
     }
     
-    public List<Jugador> obtenerRanking(){
+    public List<Jugador> obtenerRanking(Torneo torneo){
         
         /* AYUDA!!! tendríamos que hacer que se arme una lista de ranking con el 
         total de puntos (total de veces que aparece en encuentro 
         como ganador multiplicado por 3 mas uno por cada contrato)*/
         
-        String comandoSql = "SELECT *, SUM(e.id_ganador = j.id_jugador AND e.id_torneo = t.id_torneo)*3 AS puntos "
-                + "FROM jugador j, encuentro e, torneo t "
+        String comandoSql = "SELECT *, SUM(e.id_ganador = j.id_jugador AND e.id_torneo = ?)*3 AS puntos "
+                + "FROM jugador j, encuentro e "
                 + "GROUP BY j.id_jugador "
                 + "ORDER BY puntos DESC"; 
         List<Jugador> jugadores = new ArrayList<>();
@@ -283,6 +283,7 @@ public class TorneoData {
         
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            prepStat.setInt(1, torneo.getIdTorneo());
             ResultSet resultSet = prepStat.executeQuery();
             
             while (resultSet.next()){

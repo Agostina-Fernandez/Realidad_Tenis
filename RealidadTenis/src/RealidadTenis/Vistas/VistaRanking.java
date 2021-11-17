@@ -8,6 +8,7 @@ import RealidadTenis.Control.TorneoData;
 import RealidadTenis.Modelo.Jugador;
 import RealidadTenis.Modelo.Torneo;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -30,7 +31,8 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         
         this.menu = menu;
         this.torneoData = torneoData;
-        jugadores = (ArrayList<Jugador>) torneoData.obtenerRanking();
+        Torneo torneo = (Torneo) jComboBoxTorneos.getSelectedItem();
+        jugadores = (ArrayList<Jugador>) torneoData.obtenerRanking(torneo);
         torneos = (ArrayList<Torneo>) torneoData.obtenerTorneos();
         
         llenarCombo();
@@ -165,7 +167,9 @@ public class VistaRanking extends javax.swing.JInternalFrame {
     private void jComboBoxTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTorneosActionPerformed
         // TODO add your handling code here:
         
+        Torneo torneo = (Torneo) jComboBoxTorneos.getSelectedItem();
         
+        torneoData.obtenerRanking(torneo);
     }//GEN-LAST:event_jComboBoxTorneosActionPerformed
 
     private void armarCabecera() {
