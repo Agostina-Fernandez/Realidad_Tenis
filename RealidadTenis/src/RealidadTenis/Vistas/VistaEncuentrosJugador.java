@@ -211,11 +211,12 @@ public class VistaEncuentrosJugador extends javax.swing.JInternalFrame {
         int id;
         Jugador jugador;
         
+        if (idString == ""){
+            llenar();
+        }
+        
         if (!idString.matches("[0-9]+")){
             JOptionPane.showMessageDialog(this, "Ingrese un ID válido");
-        } else if (idString == ""){
-            encuentros = (ArrayList<Encuentro>) encuentroData.obtenerEncuentros();
-            encuentrosActivos = (ArrayList<Encuentro>) encuentroData.obtenerEncuentrosActivos();
         } else {
             id = Integer.parseInt(idString);
             boolean ok = false;
@@ -232,11 +233,7 @@ public class VistaEncuentrosJugador extends javax.swing.JInternalFrame {
             } else {
                 jugador = jugadorData.buscarJugador(id);
 
-                encuentros = (ArrayList<Encuentro>) encuentroData.obtenerEncuentrosJugador(jugador);
-                encuentrosActivos = (ArrayList<Encuentro>) encuentroData.obtenerEncuentrosActivosJugador(jugador);
-
-                vaciarTabla();
-                llenarTablaTodos();
+                llenar();
                 
                 jLabelComentario.setText("Encuentros del Jugador " + jugador.getIdJugador() + ", " + jugador.getApellido() + ' ' + jugador.getNombre());
             }
@@ -253,7 +250,19 @@ public class VistaEncuentrosJugador extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Ingrese un ID válido");
         }
     }//GEN-LAST:event_jTextFieldIdFocusLost
-
+    
+    private void llenar(){
+        vaciarTabla();
+        
+        if (jCheckBoxActivos.isSelected()){
+            encuentrosActivos = (ArrayList<Encuentro>) encuentroData.obtenerEncuentrosActivos();
+            llenarTablaActivos();
+        } else {
+            encuentros = (ArrayList<Encuentro>) encuentroData.obtenerEncuentros();
+            llenarTablaTodos();
+        }
+    }
+    
     private void vaciarTabla(){
         int filas = modelo.getRowCount() - 1;
 
@@ -286,14 +295,26 @@ public class VistaEncuentrosJugador extends javax.swing.JInternalFrame {
     }                                        
 
     private void llenarTablaTodos(){
+        vaciarTabla();
+        
         for (Encuentro e : encuentros) {
-            modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getJugador1().getApellido() + ' ' + e.getJugador1().getNombre(), e.getJugador2().getApellido() + ' ' + e.getJugador2().getNombre(), e.getResultadoJ1(), e.getResultadoJ2(), e.getCancha().getNumeroCancha(), e.getFecha(), e.getHora(), e.getEstado(), e.isActivo()});
+            if (e.getGanador() == null){
+                modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getJugador1().getApellido() + ' ' + e.getJugador1().getNombre(), e.getJugador2().getApellido() + ' ' + e.getJugador2().getNombre(), "Indefinido", e.getResultadoJ1(), e.getResultadoJ2(), e.getCancha().getNumeroCancha(), e.getFecha(), e.getHora(), e.getEstado(), e.isActivo()});
+            } else {
+                modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getJugador1().getApellido() + ' ' + e.getJugador1().getNombre(), e.getJugador2().getApellido() + ' ' + e.getJugador2().getNombre(), e.getGanador().getApellido() + ' ' + e.getGanador().getNombre(), e.getResultadoJ1(), e.getResultadoJ2(), e.getCancha().getNumeroCancha(), e.getFecha(), e.getHora(), e.getEstado(), e.isActivo()});
+            }
         }
     }                                      
 
     private void llenarTablaActivos(){
+        vaciarTabla();
+        
         for (Encuentro e : encuentrosActivos) {
-            modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getJugador1().getApellido() + ' ' + e.getJugador1().getNombre(), e.getJugador2().getApellido() + ' ' + e.getJugador2().getNombre(), e.getResultadoJ1(), e.getResultadoJ2(), e.getCancha().getNumeroCancha(), e.getFecha(), e.getHora(), e.getEstado(), e.isActivo()});
+            if (e.getGanador() == null){
+                modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getJugador1().getApellido() + ' ' + e.getJugador1().getNombre(), e.getJugador2().getApellido() + ' ' + e.getJugador2().getNombre(), "Indefinido", e.getResultadoJ1(), e.getResultadoJ2(), e.getCancha().getNumeroCancha(), e.getFecha(), e.getHora(), e.getEstado(), e.isActivo()});
+            } else {
+                modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getJugador1().getApellido() + ' ' + e.getJugador1().getNombre(), e.getJugador2().getApellido() + ' ' + e.getJugador2().getNombre(), e.getGanador().getApellido() + ' ' + e.getGanador().getNombre(), e.getResultadoJ1(), e.getResultadoJ2(), e.getCancha().getNumeroCancha(), e.getFecha(), e.getHora(), e.getEstado(), e.isActivo()});
+            }
         }
     }
 
