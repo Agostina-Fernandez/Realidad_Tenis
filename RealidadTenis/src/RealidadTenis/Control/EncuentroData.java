@@ -39,27 +39,24 @@ public class EncuentroData {
     }
     
     public void guardarEncuentro(Encuentro encuentro){
-        String comandoSql = "INSERT INTO encuentro (id_torneo, id_jugador1, "
-                + "id_jugador2, id_ganador, id_cancha, fecha, hora, estado, "
-                + "activo, resultado_j1, resultado;j2) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String comandoSql = "INSERT INTO encuentro (id_encuentro, id_torneo, id_jugador1, "
+                + "id_jugador2, id_cancha, fecha, estado, "
+                + "activo) VALUES (?,?,?,?,?,?,?,?)";
         
         PreparedStatement prepStat;
         System.out.println("guardar alumno: " + encuentro);
         try {
             prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
             
-            prepStat.setInt(1, encuentro.getTorneo().getIdTorneo());
-            prepStat.setInt(2, encuentro.getJugador1().getIdJugador());
-            prepStat.setInt(3, encuentro.getJugador2().getIdJugador());
-            prepStat.setInt(4, encuentro.getGanador().getIdJugador());
+            prepStat.setInt(1, encuentro.getIdEncuentro());
+            prepStat.setInt(2, encuentro.getTorneo().getIdTorneo());
+            prepStat.setInt(3, encuentro.getJugador1().getIdJugador());
+            prepStat.setInt(4, encuentro.getJugador2().getIdJugador());
             prepStat.setInt(5, encuentro.getCancha().getIdCancha());
             prepStat.setDate(6, Date.valueOf(encuentro.getFecha()));
-            prepStat.setTime(7, Time.valueOf(encuentro.getHora()));
-            prepStat.setString(8, encuentro.getEstado());
-            prepStat.setBoolean(9, encuentro.isActivo());
-            prepStat.setInt(10, encuentro.getResultadoJ1());
-            prepStat.setInt(11, encuentro.getResultadoJ2());
-            
+            prepStat.setString(7, encuentro.getEstado());
+            prepStat.setBoolean(8, encuentro.isActivo());
+            System.out.println("prepstat: " + prepStat);
             prepStat.executeUpdate();
             ResultSet resultSet = prepStat.getGeneratedKeys();
             
@@ -70,7 +67,7 @@ public class EncuentroData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al insertar");
+            System.out.println("Error al insertar encuentro" + ex);
         }
     }
     
@@ -114,11 +111,11 @@ public class EncuentroData {
         }
     }
     
-    public void actualizarEncuentro(Encuentro encuentro) {
+    public void actualizarDatosEncuentro(Encuentro encuentro) {
         String comandoSql = "UPDATE encuentro " +
                 "SET id_torneo=?, id_jugador1=?, id_jugador2=?, "
-                + "id_ganador=?, id_cancha=?, fecha=?, hora=?, estado=?, "
-                + "activo=?, resultado_j1=?, resultado_j2=? WHERE id_encuentro=?";
+                + "id_cancha=?, fecha=?, estado=?, "
+                + "activo=? WHERE id_encuentro=?";
         PreparedStatement prepStat;
         
         try {
@@ -127,21 +124,12 @@ public class EncuentroData {
             prepStat.setInt(1, encuentro.getTorneo().getIdTorneo());
             prepStat.setInt(2, encuentro.getJugador1().getIdJugador());
             prepStat.setInt(3, encuentro.getJugador2().getIdJugador());
-            prepStat.setInt(4, encuentro.getGanador().getIdJugador());
-            prepStat.setInt(5, encuentro.getCancha().getIdCancha());
-            prepStat.setDate(6, Date.valueOf(encuentro.getFecha()));
-            prepStat.setTime(7, Time.valueOf(encuentro.getHora()));
-            prepStat.setBoolean(8, encuentro.isProgramado());
-            prepStat.setBoolean(9, encuentro.isActivo());
-            prepStat.setInt(10, encuentro.getResultadoJ1());
-            prepStat.setInt(11, encuentro.getResultadoJ2());
+            prepStat.setInt(4, encuentro.getCancha().getIdCancha());
+            prepStat.setDate(5, Date.valueOf(encuentro.getFecha()));
+            prepStat.setString(6, encuentro.getEstado());
+            prepStat.setBoolean(7, encuentro.isActivo());
             
-            if(encuentro.isActivo()){
-                prepStat.setInt(5, 1);
-            }else{
-                prepStat.setInt(5, 0);
-            }
-            prepStat.setInt(6, encuentro.getIdEncuentro());
+            prepStat.setInt(8, encuentro.getIdEncuentro());
             
             System.out.println("prep: " + prepStat);
             prepStat.executeUpdate();
@@ -149,7 +137,7 @@ public class EncuentroData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al modificar");
+            System.out.println("Error al modificar datos de encuentro");
         }
     }
     
