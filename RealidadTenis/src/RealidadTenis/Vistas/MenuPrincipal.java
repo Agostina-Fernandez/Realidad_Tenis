@@ -256,6 +256,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         vista.setVisible(true);
     }
+    
+    public void verVistaTorneos(){
+        VistaTorneos vista = new VistaTorneos(this, torneoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
 
    
     /**

@@ -274,12 +274,9 @@ public class TorneoData {
         total de puntos (total de veces que aparece en encuentro 
         como ganador multiplicado por 3 mas uno por cada contrato)*/
         
-        String comandoSql = "SELECT *, (COUNT(id_jugador) - 1) * 3 AS puntos "
-                + "FROM jugador j "
-                + "LEFT JOIN encuentro e "
-                + "ON j.id_jugador = e.id_ganador "
-                + "INNER JOIN torneo t "
-                + "ON e.id_torneo = t.id_torneo "
+        String comandoSql = "SELECT *, SUM(e.id_ganador = j.id_jugador AND e.id_torneo = t.id_torneo)*3 AS puntos "
+                + "FROM jugador j, encuentro e, torneo t "
+                + "GROUP BY j.id_jugador "
                 + "ORDER BY puntos DESC"; 
         List<Jugador> jugadores = new ArrayList<>();
         Jugador jugador = null;
@@ -288,7 +285,7 @@ public class TorneoData {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             ResultSet resultSet = prepStat.executeQuery();
             
-            if (resultSet.next()){
+            while (resultSet.next()){
                 jugador = new Jugador();
                 
                 jugador.setIdJugador(resultSet.getInt("id_jugador"));

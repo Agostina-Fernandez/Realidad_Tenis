@@ -6,6 +6,7 @@ package RealidadTenis.Vistas;
 
 import RealidadTenis.Control.TorneoData;
 import RealidadTenis.Modelo.Jugador;
+import RealidadTenis.Modelo.Torneo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +20,7 @@ public class VistaRanking extends javax.swing.JInternalFrame {
     private TorneoData torneoData;
     private DefaultTableModel modelo = new DefaultTableModel();
     private ArrayList<Jugador> jugadores;
+    private ArrayList<Torneo> torneos;
 
     /**
      * Creates new form VistaRanking
@@ -29,7 +31,9 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         this.menu = menu;
         this.torneoData = torneoData;
         jugadores = (ArrayList<Jugador>) torneoData.obtenerRanking();
+        torneos = (ArrayList<Torneo>) torneoData.obtenerTorneos();
         
+        llenarCombo();
         vaciarTabla();
         armarCabecera();
         llenarTabla();
@@ -49,6 +53,8 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRanking = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxTorneos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         jLabelEncuentrosJugador.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -69,6 +75,15 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableRanking);
 
+        jLabel1.setText("Seleccionar torneo:");
+
+        jComboBoxTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxTorneos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTorneosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,12 +92,22 @@ public class VistaRanking extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBoxTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -138,6 +163,12 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         menu.verMenuTorneo();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBoxTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTorneosActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jComboBoxTorneosActionPerformed
+
     private void armarCabecera() {
         ArrayList<Object> titulos = new ArrayList<>();
 
@@ -166,9 +197,19 @@ public class VistaRanking extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+    
+    private void llenarCombo() {
+        for (Torneo t: torneos) {
+            if (t.isActivo()) {
+                jComboBoxTorneos.addItem(t);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<Torneo> jComboBoxTorneos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelEncuentrosJugador;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

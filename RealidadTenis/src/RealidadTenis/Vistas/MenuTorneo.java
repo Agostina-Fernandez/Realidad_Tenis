@@ -191,6 +191,8 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
 
     private void jButtonVerTorneosActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTorneosActivosActionPerformed
         // TODO add your handling code here:
+        
+        menu.verVistaTorneos();
     }//GEN-LAST:event_jButtonVerTorneosActivosActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed

@@ -4,17 +4,39 @@
  */
 package RealidadTenis.Vistas;
 
+import RealidadTenis.Control.TorneoData;
+import RealidadTenis.Modelo.Torneo;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Agostina
  */
 public class VistaTorneos extends javax.swing.JInternalFrame {
+    private DefaultTableModel modelo;
+    private MenuPrincipal menu;
+    private TorneoData torneoData;
+    private ArrayList<Torneo> torneos;
+    private ArrayList<Torneo> torneosActivos;
+    private ArrayList<Torneo> torneosInactivos;
 
     /**
      * Creates new form VistaTorneos
      */
-    public VistaTorneos() {
+    public VistaTorneos(MenuPrincipal menu, TorneoData torneoData) {
         initComponents();
+        
+        modelo = new DefaultTableModel();
+        this.menu = menu;
+        this.torneoData = torneoData;
+        torneos = (ArrayList<Torneo>) torneoData.obtenerTorneos();
+        torneosActivos = (ArrayList<Torneo>) torneoData.obtenerTorneosActivos();
+        torneosInactivos = (ArrayList<Torneo>) torneoData.obtenerTorneosInactivos();
+        
+        armarCabecera();
+        vaciarTabla();
+        llenarTablaTodos();
     }
 
     /**
@@ -26,21 +48,180 @@ public class VistaTorneos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCanchas = new javax.swing.JTable();
+        jComboBoxTorneos = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("Ver Torneos");
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jTableCanchas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableCanchas);
+
+        jComboBoxTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los Torneos", "Torneos Disponibles", "Torneos No Disponibles" }));
+        jComboBoxTorneos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTorneosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(jComboBoxTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jComboBoxTorneos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(255, 255, 255)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel1)))
+                .addContainerGap(277, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(294, 294, 294))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        menu.verMenuTorneo();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBoxTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTorneosActionPerformed
+        // TODO add your handling code here:
+        String rta = String.valueOf(jComboBoxTorneos.getSelectedItem());
+        
+        if (rta.equals("Todos los Torneos")){
+            vaciarTabla();
+            llenarTablaTodos();
+        } else if (rta.equals("Torneos Disponibles")){
+            vaciarTabla();
+            llenarTablaActivos();
+        } else {
+            vaciarTabla();
+            llenarTablaInactivos();
+        }
+    }//GEN-LAST:event_jComboBoxTorneosActionPerformed
+
+                                           
+
+    private void armarCabecera() {
+        ArrayList<Object> titulos = new ArrayList<>();
+
+        titulos.add("ID");
+        titulos.add("Nombre de la Copa");
+        titulos.add("Fecha Inicio");
+        titulos.add("Fecha Finalización");
+        titulos.add("Activo");
+
+        for (Object titulo: titulos) {
+            modelo.addColumn(titulo);
+        }
+
+        jTableCanchas.setModel(modelo);
+    }
+
+    private void llenarTablaTodos() {
+        for (Torneo t : torneos) {
+            modelo.addRow(new Object[]{t.getIdTorneo(), t.getNombreCopa(), t.getFechaInicio(), t.getFechaFin(),t.isActivo()});
+        }
+    }
+    
+    private void llenarTablaActivos() {
+        for (Torneo t : torneosActivos) {
+            modelo.addRow(new Object[]{t.getIdTorneo(), t.getNombreCopa(), t.getFechaInicio(), t.getFechaFin(),t.isActivo()});
+        }
+    }
+    
+    private void llenarTablaInactivos() {
+        for (Torneo t : torneosInactivos) {
+            modelo.addRow(new Object[]{t.getIdTorneo(), t.getNombreCopa(), t.getFechaInicio(), t.getFechaFin(),t.isActivo()});
+        }
+    }
+    
+    private void vaciarTabla(){
+        int filas = modelo.getRowCount() - 1;
+
+        for (int i = filas; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBoxTorneos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTableCanchas;
     // End of variables declaration//GEN-END:variables
 }

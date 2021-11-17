@@ -85,6 +85,6 @@ public class Torneo {
 
     @Override
     public String toString() {
-        return "Id: " + idTorneo + " - Nombre copa: " + nombreCopa;
+        return idTorneo + " - " + nombreCopa;
     }
 }
