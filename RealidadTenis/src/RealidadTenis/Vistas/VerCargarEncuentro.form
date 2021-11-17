@@ -303,7 +303,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Torneo&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxJ1">
@@ -313,7 +313,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Jugador&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxJ2">
@@ -323,7 +323,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Jugador&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxCancha">
@@ -333,7 +333,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Cancha&gt;"/>
       </AuxValues>
     </Component>
   </SubComponents>

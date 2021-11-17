@@ -16,6 +16,9 @@ import RealidadTenis.Modelo.Torneo;
 import static java.lang.Integer.parseInt;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  *
@@ -45,7 +48,7 @@ public class VerCargarEncuentro extends javax.swing.JInternalFrame {
         while(it2.hasNext()){
             Torneo t1 = it2.next();
             
-            jComboBoxTorneo.addItem(t1.toString());
+            jComboBoxTorneo.addItem(t1);
             
         }
         
@@ -54,21 +57,26 @@ public class VerCargarEncuentro extends javax.swing.JInternalFrame {
         while(it3.hasNext()){
             Jugador j1 = it3.next();
             if(j1.isActivo()){
-                jComboBoxJ1.addItem(j1.toString());
-                jComboBoxJ2.addItem(j1.toString());
+                jComboBoxJ1.addItem(j1);
+                jComboBoxJ2.addItem(j1);
             }
         }
         Iterator<Cancha> it4 = cd.obtenerCanchasEnUso().iterator();
         //jComboBoxMateria.addItem(null);
         while(it4.hasNext()){
             Cancha c1 = it4.next();
-            jComboBoxCancha.addItem(c1.toString());
+            jComboBoxCancha.addItem(c1);
         }
         
         jComboBoxTorneo.setSelectedIndex(-1);
         jComboBoxJ1.setSelectedIndex(-1);
         jComboBoxJ2.setSelectedIndex(-1);
         jComboBoxCancha.setSelectedIndex(-1);
+        jComboBoxTorneo.setEnabled(false);
+        jComboBoxJ1.setEnabled(false);
+        jComboBoxJ2.setEnabled(false);
+        jComboBoxCancha.setEnabled(false);
+        jTextFecha.setEditable(false);
     }
 
     /**
@@ -283,52 +291,98 @@ public class VerCargarEncuentro extends javax.swing.JInternalFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-        
-        /*
-        int ID=0;
-        try{
-            ID=Integer.parseInt(jTextIdEncuentro.getText());
-        }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de cancha ingresar solo numeros");
-        }
-        String ciudad = jTextTorneo.getText();
-        String categoria = jTextJ1.getText();
-        int ancho = parseInt(jTextJ2.getText());
-        int largo = parseInt(jTextCancha.getText());
-        int capacidad = parseInt(jTextFecha.getText());
-        
-
-        if(ciudad==null||ID==0||categoria==null||ancho==0||largo==0||capacidad==0){
-            JOptionPane.showMessageDialog(this,"Rellene todos los campos");
-        }
-        else{
-            if (ok == false) {
-                modEncuentro.setCiudad(ciudad);
-                modEncuentro.setCategoria(categoria);
-                modEncuentro.setAncho(ancho);
-                modEncuentro.setLargo(largo);
-                modEncuentro.setCapacidad(capacidad);
-                modEncuentro.setEnUso(jCheckBoxJugado.isSelected());
-                
-                ed.guardarEncuentro(modEncuentro);
+        if(jButtonGuardar.getText().equals("Guardar")){
+            int ID=0;
+            try{
+                ID=Integer.parseInt(jTextIdEncuentro.getText());
             }
-            else {
-                modEncuentro.setCiudad(ciudad);
-                modEncuentro.setCategoria(categoria);
-                modEncuentro.setAncho(ancho);
-                modEncuentro.setLargo(largo);
-                modEncuentro.setCapacidad(capacidad);
-                modEncuentro.setEnUso(jCheckBoxJugado.isSelected());
-                
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de id ingresar solo numeros");
+            }
+            Torneo torneo = (Torneo)jComboBoxTorneo.getSelectedItem();
+            Jugador jugador1 = (Jugador)jComboBoxJ1.getSelectedItem();
+            Jugador jugador2 = (Jugador)jComboBoxJ2.getSelectedItem();
+            Cancha cancha = (Cancha)jComboBoxCancha.getSelectedItem();
+            Date fecha = jDateChooser1.getDate();
+
+
+            if(torneo==null||ID==0||jugador1==null||jugador2==null||cancha==null||fecha==null){
+                JOptionPane.showMessageDialog(this,"Rellene todos los campos");
+            }
+            else{
+                modEncuentro.setIdEncuentro(ID);
+                modEncuentro.setTorneo(torneo);
+                modEncuentro.setJugador1(jugador1);
+                modEncuentro.setJugador2(jugador2);
+                modEncuentro.setCancha(cancha);
+                modEncuentro.setFecha(fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                modEncuentro.setGanador(null);
+
+                if(jCheckBoxEstado.isSelected()){
+                    modEncuentro.setEstado("Jugado");
+                }else{
+                    modEncuentro.setEstado("En Curso");
+                }
+
+                if(jCheckBoxActivo.isSelected()){
+                    modEncuentro.setActivo(true);
+                }else{
+                    modEncuentro.setActivo(false);
+                }
+
                 ed.guardarEncuentro(modEncuentro);
             }
             jButtonGuardar.setEnabled(false);
-            JOptionPane.showMessageDialog(this,"La cancha fue ingresada al sistema con exito");
+            jButtonGuardar.setText("Guardar");
+            JOptionPane.showMessageDialog(this,"El encuentro fue ingresado al sistema con exito");
             this.jButtonLimpiarActionPerformed(evt);
         }
-        this.jButtonLimpiarActionPerformed(evt);
-    */
+        if(jButtonGuardar.getText().equals("Modificar")){
+            int ID=0;
+            try{
+                ID=Integer.parseInt(jTextIdEncuentro.getText());
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de id ingresar solo numeros");
+            }
+            Torneo torneo = (Torneo)jComboBoxTorneo.getSelectedItem();
+            Jugador jugador1 = (Jugador)jComboBoxJ1.getSelectedItem();
+            Jugador jugador2 = (Jugador)jComboBoxJ2.getSelectedItem();
+            Cancha cancha = (Cancha)jComboBoxCancha.getSelectedItem();
+            Date fecha = jDateChooser1.getDate();
+
+
+            if(torneo==null||ID==0||jugador1==null||jugador2==null||cancha==null||fecha==null){
+                JOptionPane.showMessageDialog(this,"Rellene todos los campos");
+            }
+            else{
+                modEncuentro.setIdEncuentro(ID);
+                modEncuentro.setTorneo(torneo);
+                modEncuentro.setJugador1(jugador1);
+                modEncuentro.setJugador2(jugador2);
+                modEncuentro.setCancha(cancha);
+                modEncuentro.setFecha(fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                modEncuentro.setGanador(null);
+
+                if(jCheckBoxEstado.isSelected()){
+                    modEncuentro.setEstado("Jugado");
+                }else{
+                    modEncuentro.setEstado("En Curso");
+                }
+
+                if(jCheckBoxActivo.isSelected()){
+                    modEncuentro.setActivo(true);
+                }else{
+                    modEncuentro.setActivo(false);
+                }
+
+                ed.actualizarDatosEncuentro(modEncuentro);
+            }
+            jButtonGuardar.setEnabled(false);
+            jButtonGuardar.setText("Guardar");
+            JOptionPane.showMessageDialog(this,"El encuentro fue ingresado al sistema con exito");
+            this.jButtonLimpiarActionPerformed(evt);
+        }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
@@ -341,13 +395,13 @@ public class VerCargarEncuentro extends javax.swing.JInternalFrame {
         jComboBoxCancha.setSelectedIndex(-1);
         jTextFecha.setText("");
         jButtonGuardar.setEnabled(false);
-
+        jButtonGuardar.setText("Guardar");
     }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
         //menu.sesionDocente(user);
-        menu.verMenuZonaDeCarga();
+        menu.verMenuEncuentro();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jCheckBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEstadoActionPerformed
@@ -374,60 +428,66 @@ public class VerCargarEncuentro extends javax.swing.JInternalFrame {
                 Encuentro e1 = (Encuentro)it.next();
                 if(ID == e1.getIdEncuentro()){
                     id = e1.getIdEncuentro();
-                    
-                    for(int i = 0; i <= jComboBoxTorneo.getItemCount(); i++){
+                    for (int i = 0; i < jComboBoxTorneo.getItemCount(); i++) {
                         jComboBoxTorneo.setSelectedIndex(i);
-                        Torneo m1 = (Torneo)jComboBoxTorneo.getSelectedItem();
-                        System.out.println("Id torneo: " + m1.getIdTorneo());
-                        if(m1.getIdTorneo() == e1.getTorneo().getIdTorneo()){
+                        if(jComboBoxTorneo.getItemAt(i).getIdTorneo() == e1.getTorneo().getIdTorneo()){
                             break;
-                        }
+                        }                        
                     }
-                }
-                    //jComboBoxTorneo.setSelectedIndex(e1.getTorneo());
-                    /*
-                    jTextFecha.setText(e1.getFecha().toString());
-                    
-
+                    for (int i = 0; i < jComboBoxJ1.getItemCount(); i++) {
+                        jComboBoxJ1.setSelectedIndex(i);
+                        if(jComboBoxJ1.getItemAt(i).getIdJugador() == e1.getJugador1().getIdJugador()){
+                            break;
+                        }                        
+                    }
+                    for (int i = 0; i < jComboBoxJ2.getItemCount(); i++) {
+                        jComboBoxJ2.setSelectedIndex(i);
+                        if(jComboBoxJ2.getItemAt(i).getIdJugador() == e1.getJugador2().getIdJugador()){
+                            break;
+                        }                        
+                    }
                     if(e1.getEstado().equals("Jugado")){
                         jCheckBoxEstado.setSelected(true);
-                    }
-                    else {
+                    }else{
                         jCheckBoxEstado.setSelected(false);
                     }
                     if(e1.isActivo()){
                         jCheckBoxActivo.setSelected(true);
-                    }
-                    else {
+                    }else{
                         jCheckBoxActivo.setSelected(false);
                     }
+                    for (int i = 0; i < jComboBoxCancha.getItemCount(); i++) {
+                        jComboBoxCancha.setSelectedIndex(i);
+                        if(jComboBoxCancha.getItemAt(i).getIdCancha() == e1.getCancha().getIdCancha()){
+                            break;
+                        }                        
+                    }
+                    jTextFecha.setText(e1.getFecha().toString());
+                    jDateChooser1.setDate(java.sql.Date.valueOf(e1.getFecha()));
                     modEncuentro.setIdEncuentro(id);
-                    jTextJ1.setEditable(true);
-                    jTextTorneo.setEditable(true);
-                    jTextJ2.setEditable(true);
-                    jTextCancha.setEditable(true);
-                    jTextFecha.setEditable(true);
+                    jComboBoxTorneo.setEnabled(true);
+                    jComboBoxJ1.setEnabled(true);
+                    jComboBoxJ2.setEnabled(true);
+                    jComboBoxCancha.setEnabled(true);
                     jCheckBoxEstado.setEnabled(true);
                     jCheckBoxActivo.setEnabled(true);
                     jButtonGuardar.setEnabled(true);
+                    jButtonGuardar.setText("Modificar");
                     ok = true;
                 }
             }
             if(ok == false){
                 this.jButtonLimpiarActionPerformed(evt);
-                jTextJ1.setEditable(true);
-                jTextTorneo.setEditable(true);
-                jTextJ2.setEditable(true);
-                jTextCancha.setEditable(true);
-                jTextFecha.setEditable(true);
+                jComboBoxTorneo.setEnabled(true);
+                jComboBoxJ1.setEnabled(true);
+                jComboBoxJ2.setEnabled(true);
+                jComboBoxCancha.setEnabled(true);
                 jTextIdEncuentro.setText(String.valueOf(ID));
                 jCheckBoxEstado.setEnabled(true);
                 jCheckBoxActivo.setEnabled(true);
                 JOptionPane.showMessageDialog(this , ID+" ,está disponible para usar");
                 jButtonGuardar.setEnabled(true);
             }
-        }
-*/}
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -443,10 +503,10 @@ public class VerCargarEncuentro extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JCheckBox jCheckBoxActivo;
     private javax.swing.JCheckBox jCheckBoxEstado;
-    private javax.swing.JComboBox<String> jComboBoxCancha;
-    private javax.swing.JComboBox<String> jComboBoxJ1;
-    private javax.swing.JComboBox<String> jComboBoxJ2;
-    private javax.swing.JComboBox<String> jComboBoxTorneo;
+    private javax.swing.JComboBox<Cancha> jComboBoxCancha;
+    private javax.swing.JComboBox<Jugador> jComboBoxJ1;
+    private javax.swing.JComboBox<Jugador> jComboBoxJ2;
+    private javax.swing.JComboBox<Torneo> jComboBoxTorneo;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
