@@ -268,24 +268,23 @@ public class TorneoData {
         }
     }
     
-    public List<Jugador> obtenerRanking(){
+    public List<Jugador> obtenerRanking(Torneo torneo){
         
         /* AYUDA!!! tendríamos que hacer que se arme una lista de ranking con el 
         total de puntos (total de veces que aparece en encuentro 
         como ganador multiplicado por 3 mas uno por cada contrato)*/
         
-        String comandoSql = "SELECT *, (COUNT(id_jugador) - 1) * 3 AS puntos "
-                + "FROM jugador j "
-                + "LEFT JOIN encuentro e "
-                + "ON j.id_jugador = e.id_ganador "
-                + "INNER JOIN torneo t "
-                + "ON e.id_torneo = t.id_torneo "
-                + "ORDER BY puntos DESC"; 
+        String comandoSql = "SELECT j.id_jugador, j.nombre, t.nombre_copa, j.apellido, SUM(e.id_ganador = j.id_jugador AND e.id_torneo = t.id_torneo)*3 as puntos " +
+                            "FROM jugador j, encuentro e, torneo t " + 
+                            "WHERE t.id_torneo = ?" +
+                            "GROUP BY j.id_jugador " +
+                            "ORDER BY puntos DESC"; 
         List<Jugador> jugadores = new ArrayList<>();
         Jugador jugador = null;
         
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            prepStat.setString(1, String.valueOf(torneo.getIdTorneo()));
             ResultSet resultSet = prepStat.executeQuery();
             
             if (resultSet.next()){
@@ -306,6 +305,8 @@ public class TorneoData {
                 
                 jugadores.add(jugador);
             }
+            
+            prepStat.close();
             
         } catch (SQLException ex) {
             System.out.println("Error al buscar");

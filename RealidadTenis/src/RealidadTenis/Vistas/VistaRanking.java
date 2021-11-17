@@ -6,6 +6,7 @@ package RealidadTenis.Vistas;
 
 import RealidadTenis.Control.TorneoData;
 import RealidadTenis.Modelo.Jugador;
+import RealidadTenis.Modelo.Torneo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,7 +29,7 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         
         this.menu = menu;
         this.torneoData = torneoData;
-        jugadores = (ArrayList<Jugador>) torneoData.obtenerRanking();
+        jugadores = (ArrayList<Jugador>) torneoData.obtenerRanking((Torneo) jComboBoxCopa.getSelectedItem());
         
         vaciarTabla();
         armarCabecera();
@@ -49,6 +50,8 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRanking = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxCopa = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
         jLabelEncuentrosJugador.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -69,6 +72,10 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableRanking);
 
+        jLabel1.setText("Seleccionar Copa");
+
+        jComboBoxCopa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,13 +84,23 @@ public class VistaRanking extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addComponent(jComboBoxCopa, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBoxCopa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         jButton1.setText("Volver");
@@ -142,6 +159,7 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         ArrayList<Object> titulos = new ArrayList<>();
 
         titulos.add("ID");
+        titulos.add("Copa");
         titulos.add("Apellido");
         titulos.add("Nombre");
         titulos.add("Puntos");
@@ -154,8 +172,9 @@ public class VistaRanking extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
+        Torneo copa = (Torneo) jComboBoxCopa.getSelectedItem();
         for (Jugador j : jugadores) {
-            modelo.addRow(new Object[]{j.getIdJugador(), j.getApellido(), j.getNombre(), j.getPuntos()});
+            modelo.addRow(new Object[]{j.getIdJugador(), copa.getNombreCopa(), j.getApellido(), j.getNombre(), j.getPuntos()});
         }
     }
     
@@ -166,9 +185,19 @@ public class VistaRanking extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+    
+    private void llenarComboCliente() {
+        for (Torneo t : torneos) {
+            if (t.isActivo()) {
+                jComboBoxCopa.addItem(t);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<Torneo> jComboBoxCopa;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelEncuentrosJugador;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
