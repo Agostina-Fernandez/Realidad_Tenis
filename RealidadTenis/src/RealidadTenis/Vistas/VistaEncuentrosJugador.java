@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Agostina
  */
 public class VistaEncuentrosJugador extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo;
+    private DefaultTableModel modelo = new DefaultTableModel();
     private MenuPrincipal menu;
     private EncuentroData encuentroData;
     private JugadorData jugadorData;

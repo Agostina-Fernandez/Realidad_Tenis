@@ -181,6 +181,8 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
 
     private void jButtonVerRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerRankingActionPerformed
         // TODO add your handling code here:
+        
+        menu.verVistaRanking();
     }//GEN-LAST:event_jButtonVerRankingActionPerformed
 
     private void jButtonVerJugadoresDeTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerJugadoresDeTorneoActionPerformed

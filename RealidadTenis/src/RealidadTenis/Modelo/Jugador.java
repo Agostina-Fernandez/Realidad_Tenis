@@ -18,6 +18,7 @@ public class Jugador {
     private String estilo;
     private boolean diestro;
     private boolean activo;
+    private int puntos;
     private DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     /* CONSTRUCTORES */
@@ -83,11 +84,19 @@ public class Jugador {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
     
     /* GETTERS */
 
     public int getIdJugador() {
         return idJugador;
+    }
+
+    public int getPuntos() {
+        return puntos;
     }
 
     public String getNombre() {
