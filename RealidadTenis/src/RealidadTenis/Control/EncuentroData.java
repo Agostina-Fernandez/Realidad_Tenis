@@ -392,7 +392,7 @@ public class EncuentroData {
                 encuentro.setJugador2(jugador2);
                 encuentro.setGanador(ganador);
                 encuentro.setCancha(cancha);
-                encuentro.setFecha(resultSet.getDate("fecha").toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                encuentro.setFecha(resultSet.getDate("fecha").toLocalDate());
                 encuentro.setHora(resultSet.getTime("hora").toLocalTime());
                 encuentro.setEstado(resultSet.getString("estado"));
                 encuentro.setActivo(resultSet.getBoolean("activo"));
