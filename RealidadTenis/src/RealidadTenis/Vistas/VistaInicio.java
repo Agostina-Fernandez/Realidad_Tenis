@@ -197,6 +197,8 @@ public class VistaInicio extends javax.swing.JInternalFrame {
 
     private void jButtonMenuListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMenuListadoActionPerformed
         // TODO add your handling code here:
+        
+        menu.verMunuListados();
     }//GEN-LAST:event_jButtonMenuListadoActionPerformed
 
 

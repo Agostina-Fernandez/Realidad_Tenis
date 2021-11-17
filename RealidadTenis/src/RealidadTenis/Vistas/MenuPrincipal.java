@@ -38,7 +38,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             this.iniciarSesion();
 
-            verMunuListados();
+            verVistaInicio();
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
@@ -65,6 +65,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public void verMunuListados(){
         MenuListados vista = new MenuListados(this);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verVistaInicio(){
+        VistaInicio vista = new VistaInicio(conexion, this);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verVistaRanking(){
+        VistaRanking vista = new VistaRanking(this, torneoData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();

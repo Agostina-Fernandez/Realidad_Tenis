@@ -268,43 +268,50 @@ public class TorneoData {
         }
     }
     
-    public List<Torneo> obtenerRanking(){
+    public List<Jugador> obtenerRanking(){
         
         /* AYUDA!!! tendríamos que hacer que se arme una lista de ranking con el 
         total de puntos (total de veces que aparece en encuentro 
         como ganador multiplicado por 3 mas uno por cada contrato)*/
         
-        String comandoSql = "SELECT * , COUNT(id_jugador) AS puntos"
-                + "FROM jugador j"
-                + "LEFT JOIN torneo t"
+        String comandoSql = "SELECT *, (COUNT(id_jugador) - 1) * 3 AS puntos "
+                + "FROM jugador j "
+                + "LEFT JOIN encuentro e "
                 + "ON j.id_jugador = e.id_ganador "
-                + "INNER JOIN encuentro e "
-                + "ON e.id_torneo = t.id_torneo"
+                + "INNER JOIN torneo t "
+                + "ON e.id_torneo = t.id_torneo "
                 + "ORDER BY puntos DESC"; 
-        List<Torneo> torneos = new ArrayList<>();
-        Torneo torneo = null;
+        List<Jugador> jugadores = new ArrayList<>();
+        Jugador jugador = null;
         
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             ResultSet resultSet = prepStat.executeQuery();
             
             if (resultSet.next()){
-                torneo = new Torneo();
+                jugador = new Jugador();
                 
-                torneo.setIdTorneo(resultSet.getInt("id_torneo"));
-                torneo.setNombreCopa(resultSet.getString("nombre_copa"));
-                torneo.setFechaInicio(resultSet.getDate("fecha_inicio").toLocalDate());
-                torneo.setFechaFin(resultSet.getDate("fecha_fin").toLocalDate());
-                torneo.setActivo(resultSet.getBoolean("activo"));
+                jugador.setIdJugador(resultSet.getInt("id_jugador"));
+                jugador.setNombre(resultSet.getString("nombre"));
+                jugador.setApellido(resultSet.getString("apellido"));
+                jugador.setDni(resultSet.getLong("dni"));
+                jugador.setFechaNacimiento(resultSet.getDate("fecha_nacimiento").toLocalDate());
+                System.out.println("fecha de nac: " + Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
+                jugador.setAltura(resultSet.getDouble("altura"));
+                jugador.setPeso(resultSet.getDouble("peso"));
+                jugador.setEstilo(resultSet.getString("estilo"));
+                jugador.setDiestro(resultSet.getBoolean("diestro"));
+                jugador.setActivo(resultSet.getBoolean("activo"));
+                jugador.setPuntos(resultSet.getInt("puntos"));
                 
-                torneos.add(torneo);
+                jugadores.add(jugador);
             }
             
         } catch (SQLException ex) {
             System.out.println("Error al buscar");
         }
         
-        return torneos;
+        return jugadores;
     }
     
     public List<Encuentro> obtenerEncuentrosTorneo(){
