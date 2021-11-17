@@ -311,7 +311,7 @@ public class TorneoData {
     
     public List<Jugador> obtenerJugadoresPorTorneo(Torneo torneo){
         
-        String comandoSql = "SELECT * "
+        String comandoSql = "SELECT *, SUM(e.id_ganador = j.id_jugador AND e.id_torneo = ?)*3 AS puntos "
                 + "FROM jugador j, encuentro e "
                 + "WHERE e.id_ganador = j.id_jugador AND e.id_torneo=? GROUP BY j.id_jugador";
         List<Jugador> jugadores = new ArrayList<>();
@@ -320,6 +320,7 @@ public class TorneoData {
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             prepStat.setInt(1, torneo.getIdTorneo());
+            prepStat.setInt(2, torneo.getIdTorneo());
             ResultSet resultSet = prepStat.executeQuery();
             
             while (resultSet.next()){
