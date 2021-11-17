@@ -1,35 +1,45 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package RealidadTenis.Vistas;
 
-import RealidadTenis.Control.CanchaData;
 import RealidadTenis.Control.EncuentroData;
-import RealidadTenis.Modelo.Cancha;
-import static java.lang.Integer.parseInt;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
+import RealidadTenis.Control.TorneoData;
+import RealidadTenis.Control.JugadorData;
+import RealidadTenis.Modelo.Encuentro;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mauri
+ * @author Agostina
  */
 public class VerProxEncuentros extends javax.swing.JInternalFrame {
-    private boolean ok;
+    private DefaultTableModel modelo;
+    private ArrayList<Encuentro> encuentros;
     private EncuentroData ed;
-    private Cancha modCancha;
+    private TorneoData td;
     private MenuPrincipal menu;
-    private int id;
+    
     /**
-     * Creates new form AgregarModificarJugador
+     * Creates new form VistaVerJugadores
      */
-    public VerProxEncuentros(MenuPrincipal menu, EncuentroData ed) {
+    public VerProxEncuentros(MenuPrincipal menu, EncuentroData ed, TorneoData td) {
         initComponents();
-        this.ed = ed;
-        modCancha = new Cancha();
+        
+        String fecha = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        encuentros = (ArrayList<Encuentro>) ed.obtenerProxEncuentros(fecha);
+
+        modelo = new DefaultTableModel();
         this.menu = menu;
+        
+        vaciarTabla();
+        armarCabecera();
+        llenarTablaTodos();
     }
 
     /**
@@ -41,362 +51,136 @@ public class VerProxEncuentros extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonGuardar = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
-        jButtonSalir = new javax.swing.JButton();
-        jCheckBoxEstado = new javax.swing.JCheckBox();
-        jLabel2 = new javax.swing.JLabel();
-        jTextCiudad = new javax.swing.JTextField();
-        jTextCategoria = new javax.swing.JTextField();
-        jTextNumCancha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButtonBuscar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextAncho = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextLargo = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextCapacidad = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableEncuentros = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
-        jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
-        jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonGuardar.setText("Guardar");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("PROXIMOS ENCUENTROS");
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jTableEncuentros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableEncuentros.setCellSelectionEnabled(true);
+        jScrollPane1.setViewportView(jTableEncuentros);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-
-        jButtonLimpiar.setBackground(new java.awt.Color(153, 153, 153));
-        jButtonLimpiar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLimpiar.setText("Limpiar");
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
-
-        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
-        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSalir.setText("Salir");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jCheckBoxEstado.setText("En uso");
-        jCheckBoxEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxEstadoActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel2.setText("Categoria");
-
-        jTextCiudad.setEditable(false);
-        jTextCiudad.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
-        jTextCategoria.setEditable(false);
-        jTextCategoria.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
-        jTextNumCancha.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel1.setText("Numero de cancha");
-
-        jButtonBuscar.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jButtonBuscar.setText("Buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("* Busque para ver disponibilidad");
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("AGREGAR/MODIFICAR CANCHA");
-
-        jLabel3.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel3.setText("Ciudad");
-
-        jLabel8.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel8.setText("Ancho");
-
-        jTextAncho.setEditable(false);
-        jTextAncho.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel9.setText("Largo");
-
-        jTextLargo.setEditable(false);
-        jTextLargo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jLabel10.setText("Capacidad");
-
-        jTextCapacidad.setEditable(false);
-        jTextCapacidad.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(30, 30, 30))
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(544, 544, 544)
-                                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addGap(110, 110, 110)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(135, 135, 135)
-                                        .addComponent(jCheckBoxEstado))
-                                    .addComponent(jTextAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(89, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(198, 198, 198)
-                            .addComponent(jTextNumCancha, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButtonBuscar))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(180, 180, 180)
-                            .addComponent(jLabel7)))
-                    .addContainerGap(197, Short.MAX_VALUE)))
+                        .addGap(198, 198, 198)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextAncho, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextLargo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxEstado)
-                    .addComponent(jLabel9))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGuardar)
-                    .addComponent(jButtonSalir)
-                    .addComponent(jButtonLimpiar))
-                .addGap(22, 22, 22))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel7)
-                    .addGap(41, 41, 41)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextNumCancha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonBuscar))
-                    .addContainerGap(362, Short.MAX_VALUE)))
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        /*
-        int ID=0;
-        try{
-            ID=Integer.parseInt(jTextNumCancha.getText());
-        }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de cancha ingresar solo numeros");
-        }
-        String ciudad = jTextCiudad.getText();
-        String categoria = jTextCategoria.getText();
-        int ancho = parseInt(jTextAncho.getText());
-        int largo = parseInt(jTextLargo.getText());
-        int capacidad = parseInt(jTextCapacidad.getText());
         
+        menu.verMenuEncuentro();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        if(ciudad==null||ID==0||categoria==null||ancho==0||largo==0||capacidad==0){
-            JOptionPane.showMessageDialog(this,"Rellene todos los campos");
+    private void armarCabecera() {
+        ArrayList<Object> titulos = new ArrayList<>();
+
+        titulos.add("ID");
+        titulos.add("Torneo");
+        titulos.add("Fecha");
+        titulos.add("Estado");
+        titulos.add("Activo");
+
+        for (Object titulo: titulos) {
+            modelo.addColumn(titulo);
         }
-        else{
-            if (ok == false) {
-                modCancha.setCiudad(ciudad);
-                modCancha.setCategoria(categoria);
-                modCancha.setAncho(ancho);
-                modCancha.setLargo(largo);
-                modCancha.setCapacidad(capacidad);
-                modCancha.setEnUso(jCheckBoxEstado.isSelected());
-                
-                cd.guardarCancha(modCancha);
-            }
-            else {
-                modCancha.setCiudad(ciudad);
-                modCancha.setCategoria(categoria);
-                modCancha.setAncho(ancho);
-                modCancha.setLargo(largo);
-                modCancha.setCapacidad(capacidad);
-                modCancha.setEnUso(jCheckBoxEstado.isSelected());
-                
-                cd.guardarCancha(modCancha);
-            }
-            jButtonGuardar.setEnabled(false);
-            JOptionPane.showMessageDialog(this,"La cancha fue ingresada al sistema con exito");
-            this.jButtonLimpiarActionPerformed(evt);
+
+        jTableEncuentros.setModel(modelo);
+    }
+
+    private void llenarTablaTodos() {
+        
+        for (Encuentro e: encuentros) {
+            
+            modelo.addRow(new Object[]{e.getIdEncuentro(), e.getTorneo().getNombreCopa(), e.getFecha(), e.getEstado(), e.isActivo()});
         }
-        this.jButtonLimpiarActionPerformed(evt);
-*/
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
+    }
+    
+    private void vaciarTabla(){
+        int filas = modelo.getRowCount() - 1;
 
-    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-        // TODO add your handling code here:
-        jTextNumCancha.setText("");
-        jTextCategoria.setText("");
-        jTextCiudad.setText("");
-        jTextAncho.setText("");
-        jTextLargo.setText("");
-        jTextCapacidad.setText("");
-        jButtonGuardar.setEnabled(false);
-    }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        // TODO add your handling code here:
-        //menu.sesionDocente(user);
-        menu.verMenuZonaDeCarga();
-    }//GEN-LAST:event_jButtonSalirActionPerformed
-
-    private void jCheckBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxEstadoActionPerformed
-
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        /*
-        int ID = 0;
-        ok = false;
-
-        try{
-            ID = Integer.parseInt(jTextNumCancha.getText());
+        for (int i = filas; i >= 0; i--) {
+            modelo.removeRow(i);
         }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de cancha ingresar solo numeros");
-        }
-        if(ID==0){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo numero de cancha ingresar solo numeros");
-        }
-        else {
-            Iterator it = cd.obtenerJugadores().iterator();
-            while(it.hasNext()){
-                Cancha c1 = (Cancha)it.next();
-                if(ID == c1.getIdCancha()){
-                    id = c1.getIdCancha();
-                    jTextCategoria.setText(c1.getCategoria());
-                    jTextCiudad.setText(c1.getCiudad());
-                    jTextAncho.setText(""+c1.getAncho());
-                    jTextLargo.setText(""+c1.getLargo());
-                    jTextCapacidad.setText(""+c1.getCapacidad());
-
-                    if(c1.isEnUso()){
-                        jCheckBoxEstado.setSelected(true);
-                    }
-                    else {
-                        jCheckBoxEstado.setSelected(false);
-                    }
-                    modCancha.setIdCancha(id);
-                    jTextCategoria.setEditable(true);
-                    jTextCiudad.setEditable(true);
-                    jTextAncho.setEditable(true);
-                    jTextLargo.setEditable(true);
-                    jTextCapacidad.setEditable(true);
-                    jCheckBoxEstado.setEnabled(true);
-                    jButtonGuardar.setEnabled(true);
-                    ok = true;
-                }
-            }
-            if(ok == false){
-                this.jButtonLimpiarActionPerformed(evt);
-                jTextCategoria.setEditable(true);
-                jTextCiudad.setEditable(true);
-                jTextAncho.setEditable(true);
-                jTextLargo.setEditable(true);
-                jTextCapacidad.setEditable(true);
-                jTextNumCancha.setText(String.valueOf(ID));
-                jCheckBoxEstado.setEnabled(true);
-                JOptionPane.showMessageDialog(this , ID+" ,está disponible para usar");
-                jButtonGuardar.setEnabled(true);
-            }
-        }
-*/
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonLimpiar;
-    private javax.swing.JButton jButtonSalir;
-    private javax.swing.JCheckBox jCheckBoxEstado;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextAncho;
-    private javax.swing.JTextField jTextCapacidad;
-    private javax.swing.JTextField jTextCategoria;
-    private javax.swing.JTextField jTextCiudad;
-    private javax.swing.JTextField jTextLargo;
-    private javax.swing.JTextField jTextNumCancha;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTableEncuentros;
     // End of variables declaration//GEN-END:variables
 }

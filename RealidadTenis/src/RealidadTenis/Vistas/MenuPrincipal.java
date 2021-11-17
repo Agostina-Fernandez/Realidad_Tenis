@@ -38,10 +38,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             this.iniciarSesion();
 
-<<<<<<< HEAD
+
             verVistaInicio();
-=======
->>>>>>> cc27c9d967d50dede91f9a4c03e9fda11bf70ab1
+
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
@@ -177,7 +176,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     public void verModificarEncuentro(){
-        VerModificarEncuentro vista = new VerModificarEncuentro(this, encuentroData);
+        VerCargarResultadosEncuentro vista = new VerCargarResultadosEncuentro(this, encuentroData, torneoData, jugadorData, canchaData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();
@@ -187,7 +186,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     public void verProxEncuentros(){
-        VerProxEncuentros vista = new VerProxEncuentros(this, encuentroData);
+        VerProxEncuentros vista = new VerProxEncuentros(this, encuentroData, torneoData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vista);
         jDesktopPane.repaint();

@@ -110,6 +110,28 @@ public class EncuentroData {
             System.out.println("Error al desactivar");
         }
     }
+    public void modificarResultadoEncuentro(Encuentro encuentro) {
+        String comandoSql = "UPDATE encuentro " +
+                "SET id_ganador=?, resultado_j1=?, resultado_j2=? WHERE id_encuentro=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setInt(1, encuentro.getGanador().getIdJugador());
+            prepStat.setInt(2, encuentro.getResultadoJ1());
+            prepStat.setInt(3, encuentro.getResultadoJ2());
+            prepStat.setInt(4, encuentro.getIdEncuentro());
+            
+            System.out.println("prep: " + prepStat);
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar resultado de encuentro");
+        }
+    }
     
     public void actualizarDatosEncuentro(Encuentro encuentro) {
         String comandoSql = "UPDATE encuentro " +
@@ -191,6 +213,107 @@ public class EncuentroData {
     
     public List<Encuentro> obtenerEncuentros(){
         String comandoSql = "SELECT * FROM encuentro";
+        List<Encuentro> encuentros = new ArrayList<>();
+        Encuentro encuentro = null;
+        
+        try {
+            Jugador jugador1;
+            Jugador jugador2;
+            Jugador ganador;
+            Cancha cancha;
+            Torneo torneo;
+            JugadorData jugadorData = new JugadorData(con);
+            CanchaData canchaData = new CanchaData(con);
+            TorneoData torneoData = new TorneoData(con);
+            
+            
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while(resultSet.next()){
+                encuentro = new Encuentro();
+                
+                jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
+                jugador2 = jugadorData.buscarJugador(resultSet.getInt("id_jugador2"));
+                ganador = jugadorData.buscarJugador(resultSet.getInt("id_ganador"));
+                cancha = canchaData.buscarCancha(resultSet.getInt("id_cancha"));
+                torneo = torneoData.buscarTorneo(resultSet.getInt("id_torneo"));
+                
+                encuentro.setIdEncuentro(resultSet.getInt("id_encuentro"));
+                encuentro.setTorneo(torneo);
+                encuentro.setJugador1(jugador1);
+                encuentro.setJugador2(jugador2);
+                encuentro.setGanador(ganador);
+                encuentro.setCancha(cancha);
+                encuentro.setFecha(resultSet.getDate("fecha").toLocalDate());
+                encuentro.setEstado(resultSet.getString("estado"));
+                encuentro.setActivo(resultSet.getBoolean("activo"));
+                encuentro.setResultadoJ1(resultSet.getInt("resultado_j1"));
+                encuentro.setResultadoJ2(resultSet.getInt("resultado_j2"));
+                
+                encuentros.add(encuentro);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar encuentros");
+        }
+        
+        return encuentros;
+    }
+    
+    public List<Encuentro> obtenerProxEncuentros(String fecha){
+        System.out.println("fecha a buscar: " + fecha);
+        String comandoSql = "SELECT * FROM `encuentro` WHERE `fecha` > '" + fecha + "'";
+        List<Encuentro> encuentros = new ArrayList<>();
+        Encuentro encuentro = null;
+        
+        try {
+            Jugador jugador1;
+            Jugador jugador2;
+            Jugador ganador;
+            Cancha cancha;
+            Torneo torneo;
+            JugadorData jugadorData = new JugadorData(con);
+            CanchaData canchaData = new CanchaData(con);
+            TorneoData torneoData = new TorneoData(con);
+            
+            
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while(resultSet.next()){
+                encuentro = new Encuentro();
+                
+                jugador1 = jugadorData.buscarJugador(resultSet.getInt("id_jugador1"));
+                jugador2 = jugadorData.buscarJugador(resultSet.getInt("id_jugador2"));
+                ganador = jugadorData.buscarJugador(resultSet.getInt("id_ganador"));
+                cancha = canchaData.buscarCancha(resultSet.getInt("id_cancha"));
+                torneo = torneoData.buscarTorneo(resultSet.getInt("id_torneo"));
+                
+                encuentro.setIdEncuentro(resultSet.getInt("id_encuentro"));
+                encuentro.setTorneo(torneo);
+                encuentro.setJugador1(jugador1);
+                encuentro.setJugador2(jugador2);
+                encuentro.setGanador(ganador);
+                encuentro.setCancha(cancha);
+                encuentro.setFecha(resultSet.getDate("fecha").toLocalDate());
+                encuentro.setEstado(resultSet.getString("estado"));
+                encuentro.setActivo(resultSet.getBoolean("activo"));
+                encuentro.setResultadoJ1(resultSet.getInt("resultado_j1"));
+                encuentro.setResultadoJ2(resultSet.getInt("resultado_j2"));
+                
+                encuentros.add(encuentro);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar encuentros");
+        }
+        
+        return encuentros;
+    }
+    
+    public List<Encuentro> obtenerEncuentrosSegunTorneo(int id){
+        String comandoSql = "SELECT * FROM encuentro WHERE id_torneo = " + id;
         List<Encuentro> encuentros = new ArrayList<>();
         Encuentro encuentro = null;
         

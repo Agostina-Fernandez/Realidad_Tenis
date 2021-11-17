@@ -148,7 +148,6 @@ public class JugadorData {
                 jugador.setApellido(resultSet.getString("apellido"));
                 jugador.setDni(resultSet.getLong("dni"));
                 jugador.setFechaNacimiento(resultSet.getDate("fecha_nacimiento").toLocalDate());
-                System.out.println("fecha de nac: " + Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
                 jugador.setAltura(resultSet.getDouble("altura"));
                 jugador.setPeso(resultSet.getDouble("peso"));
                 jugador.setEstilo(resultSet.getString("estilo"));
