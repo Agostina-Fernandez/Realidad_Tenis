@@ -37,8 +37,8 @@ public class ContratoData {
         }
     }
     
-    public void guardarContrato(Contrato contrato, int idJ, int idP){
-        String comandoSql = "INSERT INTO contrato (id_jugador, id_patrocinador, inicio_contrato, fin_contrato, activo) VALUES (?,?,?,?,?)";  
+    public void guardarContrato(Contrato contrato){
+        String comandoSql = "INSERT INTO contrato (id_jugador, id_patrocinador, articulo, inicio_contrato, fin_contrato, activo) VALUES (?,?,?,?,?,?)";  
         
         PreparedStatement prepStat;
         try {
@@ -46,9 +46,10 @@ public class ContratoData {
             
             prepStat.setInt(1, contrato.getJugador().getIdJugador());
             prepStat.setInt(2, contrato.getPatrocinador().getIdPatrocinador());
-            prepStat.setDate(3, Date.valueOf(contrato.getInicioContrato()));
-            prepStat.setDate(4, Date.valueOf(contrato.getFinContrato()));
-            prepStat.setBoolean(5, contrato.isActivo());
+            prepStat.setString(3, contrato.getArticulo());
+            prepStat.setDate(4, Date.valueOf(contrato.getInicioContrato()));
+            prepStat.setDate(5, Date.valueOf(contrato.getFinContrato()));
+            prepStat.setBoolean(6, contrato.isActivo());
             
             prepStat.executeUpdate();
             ResultSet resultSet = prepStat.getGeneratedKeys(); //recupero el Id
@@ -60,7 +61,7 @@ public class ContratoData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al insertar");
+            System.out.println("Error al insertar contrato");
         }
     }
     
@@ -170,6 +171,43 @@ public class ContratoData {
            }
 
         return listaPatrocinador;
+    }
+    
+    public List<Contrato> obtenerContratosActivos(){
+        ArrayList<Contrato> listaContratos = new ArrayList<>();
+        String comandoSql = "SELECT * FROM contrato,jugador,patrocinador WHERE contrato.id_jugador=jugador.id_jugador and contrato.id_patrocinador=patrocinador.id_patrocinador AND contrato.activo = true";
+        Contrato contrato;
+        Jugador jugador = new Jugador();
+        Patrocinador patrocinador = new Patrocinador();
+        
+            try {
+               PreparedStatement ps = conexion.prepareStatement(comandoSql);
+
+               ResultSet rs = ps.executeQuery();
+
+               while (rs.next()) {
+                   contrato = new Contrato();
+                   
+                   jugador.setNombre(rs.getString("nombre"));
+                   jugador.setApellido(rs.getString("apellido"));
+                   patrocinador.setMarca(rs.getString("marca"));
+                   contrato.setArticulo(rs.getString("articulo"));
+                   contrato.setIdContrato(rs.getInt("id_contrato"));
+                   contrato.setJugador(jugador);
+                   contrato.setPatrocinador(patrocinador);
+                   contrato.setInicioContrato(rs.getDate("inicio_contrato").toLocalDate());
+                   contrato.setInicioContrato(rs.getDate("fin_contrato").toLocalDate());
+
+                   listaContratos.add(contrato);
+               }
+               
+               ps.close();
+
+           } catch (SQLException ex) {
+               System.out.println("Error en buscar");
+           }
+
+        return listaContratos;
     }
     
     public List<Contrato> obtenerContratoDeJugadores(int id){

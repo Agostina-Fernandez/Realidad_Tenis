@@ -5,17 +5,22 @@
  */
 package RealidadTenis.Vistas;
 
+import RealidadTenis.Control.ContratoData;
+
 /**
  *
  * @author Win10
  */
 public class MenuContrato extends javax.swing.JInternalFrame {
-
+    private MenuPrincipal menu;
+    private ContratoData cd;
     /**
      * Creates new form MenuContrato
      */
-    public MenuContrato() {
+    public MenuContrato(MenuPrincipal menu, ContratoData cd) {
         initComponents();
+        this.menu = menu;
+        this.cd = cd;
     }
 
     /**
@@ -33,6 +38,7 @@ public class MenuContrato extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jButtonAsignarPatrocinador = new javax.swing.JButton();
         jButtonVerPatrocinadores = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -57,10 +63,20 @@ public class MenuContrato extends javax.swing.JInternalFrame {
         jButtonVerPatrocinadores.setBackground(new java.awt.Color(153, 153, 153));
         jButtonVerPatrocinadores.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonVerPatrocinadores.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonVerPatrocinadores.setText("Ver Patrocinador/es de un Jugador");
+        jButtonVerPatrocinadores.setText("Ver Contratos Activos");
         jButtonVerPatrocinadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerPatrocinadoresActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
             }
         });
 
@@ -69,20 +85,27 @@ public class MenuContrato extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonVerPatrocinadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonAsignarPatrocinador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonVerPatrocinadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAsignarPatrocinador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(jButtonSalir)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jButtonAsignarPatrocinador, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(29, 29, 29)
                 .addComponent(jButtonVerPatrocinadores, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jButtonSalir)
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -98,7 +121,7 @@ public class MenuContrato extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,15 +151,23 @@ public class MenuContrato extends javax.swing.JInternalFrame {
 
     private void jButtonAsignarPatrocinadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAsignarPatrocinadorActionPerformed
         // TODO add your handling code here:
+        menu.verAsignarPatrocinador();
     }//GEN-LAST:event_jButtonAsignarPatrocinadorActionPerformed
 
     private void jButtonVerPatrocinadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerPatrocinadoresActionPerformed
         // TODO add your handling code here:
+        menu.verPatrocinadores();
     }//GEN-LAST:event_jButtonVerPatrocinadoresActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.iniciarSesion();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAsignarPatrocinador;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonVerPatrocinadores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

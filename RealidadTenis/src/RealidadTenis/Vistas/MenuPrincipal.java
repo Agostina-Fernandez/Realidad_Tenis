@@ -115,6 +115,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+    public void verAsignarPatrocinador(){
+        VerAsignarPatrocinador vista = new VerAsignarPatrocinador(this, contratoData, patrocinadorData, jugadorData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
+    public void verPatrocinadores(){
+        
+        VerContratosActivos vista = new VerContratosActivos(this, contratoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+        
+    }
+    
     public void verAgregarModificarPatrocinador(){
         AgregarModificarPatrocinador vista = new AgregarModificarPatrocinador(this, patrocinadorData);
         jDesktopPane.removeAll();
@@ -185,6 +207,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vista.setVisible(true);
     }
     
+    public void verMenuContrato(){
+        MenuContrato vista = new MenuContrato(this, contratoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
     public void verProxEncuentros(){
         VerProxEncuentros vista = new VerProxEncuentros(this, encuentroData, torneoData);
         jDesktopPane.removeAll();

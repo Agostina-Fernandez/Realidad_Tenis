@@ -10,6 +10,7 @@ public class Contrato {
     private int idContrato;
     private Patrocinador patrocinador;
     private Jugador jugador;
+    private String articulo;
     private String elemento;
     private LocalDate inicioContrato;
     private LocalDate finContrato;
@@ -73,7 +74,15 @@ public class Contrato {
     public int getIdContrato() {
         return idContrato;
     }
-
+    
+    public String getArticulo(){
+        return articulo;
+    }
+    
+    public void setArticulo(String articulo){
+        this.articulo = articulo;
+    }
+    
     public Patrocinador getPatrocinador() {
         return patrocinador;
     }
