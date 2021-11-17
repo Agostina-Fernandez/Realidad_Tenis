@@ -274,8 +274,8 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
         String ciudad = jTextCiudad.getText();
         String categoria = jTextCategoria.getText();
         String direccion = jTextDireccion.getText();
-        int ancho = parseInt(jTextAncho.getText());
-        int largo = parseInt(jTextLargo.getText());
+        float ancho = Float.parseFloat(jTextAncho.getText());
+        float largo = Float.parseFloat(jTextLargo.getText());
         int capacidad = parseInt(jTextCapacidad.getText());
         
 
@@ -284,6 +284,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
         }
         else{
             if (ok == false) {
+                modCancha.setIdCancha(ID);
                 modCancha.setCiudad(ciudad);
                 modCancha.setCategoria(categoria);
                 modCancha.setDireccion(direccion);
@@ -295,6 +296,7 @@ public class AgregarModificarCancha extends javax.swing.JInternalFrame {
                 cd.guardarCancha(modCancha);
             }
             else {
+                modCancha.setIdCancha(ID);
                 modCancha.setCiudad(ciudad);
                 modCancha.setCategoria(categoria);
                 modCancha.setDireccion(direccion);

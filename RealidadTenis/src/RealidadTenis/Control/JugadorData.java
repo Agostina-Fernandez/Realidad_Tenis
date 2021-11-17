@@ -33,22 +33,23 @@ public class JugadorData {
     }
     
     public void guardarJugador(Jugador jugador){
-        String comandoSql = "INSERT INTO jugador (nombre, apellido, dni, fecha_nacimiento, altura, peso, estilo, diestro, activo) VALUES (?,?,?,?,?,?,?,?,?)";
+        String comandoSql = "INSERT INTO jugador (id_jugador, nombre, apellido, dni, fecha_nacimiento, altura, peso, estilo, diestro, activo) VALUES (?,?,?,?,?,?,?,?,?,?)";
         
         PreparedStatement prepStat;
         
         try {
             prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
             
-            prepStat.setString(1, jugador.getNombre());
-            prepStat.setString(2, jugador.getApellido());
-            prepStat.setLong(3, jugador.getDni());
-            prepStat.setDate(4, Date.valueOf(jugador.getFechaNacimiento()));
-            prepStat.setDouble(5, jugador.getAltura());
-            prepStat.setDouble(6, jugador.getPeso());
-            prepStat.setString(7, jugador.getEstilo());
-            prepStat.setBoolean(8, jugador.isDiestro());
-            prepStat.setBoolean(9, jugador.isActivo());
+            prepStat.setInt(1, jugador.getIdJugador());
+            prepStat.setString(2, jugador.getNombre());
+            prepStat.setString(3, jugador.getApellido());
+            prepStat.setLong(4, jugador.getDni());
+            prepStat.setDate(5, Date.valueOf(jugador.getFechaNacimiento()));
+            prepStat.setDouble(6, jugador.getAltura());
+            prepStat.setDouble(7, jugador.getPeso());
+            prepStat.setString(8, jugador.getEstilo());
+            prepStat.setBoolean(9, jugador.isDiestro());
+            prepStat.setBoolean(10, jugador.isActivo());
             
             prepStat.executeUpdate();
             

@@ -335,6 +335,7 @@ public class AgregarModificarJugador extends javax.swing.JInternalFrame {
             LocalDate fe = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             System.out.println(fe);
             if (ok == false) {
+                modJugador.setIdJugador(ID);
                 modJugador.setNombre(nombre);
                 modJugador.setApellido(apellido);
                 modJugador.setFechaNacimiento(fe);

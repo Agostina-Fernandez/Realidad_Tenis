@@ -21,8 +21,8 @@ public class CanchaData {
     }
     
     public void guardarCancha(Cancha cancha){
-        String comandoSql = "INSERT INTO cancha (ciudad, direccion, ancho, largo, categoria, capacidad, numero_cancha, enUso) "
-                + "VALUES (?,?,?,?,?,?,?,?)";
+        String comandoSql = "INSERT INTO cancha (id_cancha, ciudad, direccion, ancho, largo, categoria, capacidad, numero_cancha, enUso) "
+                + "VALUES (?,?,?,?,?,?,?,?,?)";
         
         PreparedStatement prepStat;
         try {
