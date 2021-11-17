@@ -221,6 +221,41 @@ public class CanchaData {
         return canchas;
     }
     
+    public List<Cancha> obtenerCanchasLibres(){
+        String comandoSql = "SELECT * FROM cancha WHERE enUso=false";
+        List<Cancha> canchas = new ArrayList<>();
+        Cancha cancha = null;
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                
+                cancha = new Cancha();
+                
+                cancha.setIdCancha(resultSet.getInt("id_cancha"));
+                cancha.setCiudad(resultSet.getString("ciudad"));
+                cancha.setDireccion(resultSet.getString("direccion"));
+                cancha.setAncho(resultSet.getInt("ancho"));
+                cancha.setLargo(resultSet.getInt("largo"));
+                cancha.setCategoria(resultSet.getString("categoria"));
+                cancha.setCapacidad(resultSet.getInt("capacidad"));
+                cancha.setNumeroCancha(resultSet.getInt("numero_cancha"));
+                cancha.setEnUso(resultSet.getBoolean("enUso"));
+                                
+                canchas.add(cancha);
+                
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar canchas libres");
+        }
+        
+        return canchas;
+    }
+    
     public void borrarCancha(int id){
         String comandoSql = "DELETE FROM cancha WHERE id_cancha=?";
         try {

@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Agostina
  */
-public class VistaRanking extends javax.swing.JInternalFrame {
+public class VistaVerJugadoresPorTorneo extends javax.swing.JInternalFrame {
     private MenuPrincipal menu;
     private TorneoData torneoData;
     private DefaultTableModel modelo = new DefaultTableModel();
@@ -26,7 +26,7 @@ public class VistaRanking extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaRanking
      */
-    public VistaRanking(MenuPrincipal menu, TorneoData torneoData) {
+    public VistaVerJugadoresPorTorneo(MenuPrincipal menu, TorneoData torneoData) {
         initComponents();
         
         this.menu = menu;
@@ -167,8 +167,7 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         vaciarTabla();
         Torneo torneo = (Torneo) jComboBoxTorneos.getSelectedItem();
-        jugadores = (ArrayList<Jugador>) torneoData.obtenerRanking(torneo);
-        torneoData.obtenerRanking(torneo);
+        jugadores = (ArrayList<Jugador>) torneoData.obtenerJugadoresPorTorneo(torneo);
         llenarTabla();
     }//GEN-LAST:event_jComboBoxTorneosActionPerformed
 
@@ -176,9 +175,9 @@ public class VistaRanking extends javax.swing.JInternalFrame {
         ArrayList<Object> titulos = new ArrayList<>();
 
         titulos.add("ID");
+        titulos.add("Torneo");
         titulos.add("Apellido");
         titulos.add("Nombre");
-        titulos.add("Puntos");
 
         for (Object titulo: titulos) {
             modelo.addColumn(titulo);
@@ -188,8 +187,9 @@ public class VistaRanking extends javax.swing.JInternalFrame {
     }
 
     private void llenarTabla() {
+        Torneo torneo = (Torneo) jComboBoxTorneos.getSelectedItem();
         for (Jugador j : jugadores) {
-            modelo.addRow(new Object[]{j.getIdJugador(), j.getApellido(), j.getNombre(), j.getPuntos()});
+            modelo.addRow(new Object[]{j.getIdJugador(), torneo.getNombreCopa(), j.getApellido(), j.getNombre()});
         }
     }
     

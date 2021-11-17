@@ -269,15 +269,51 @@ public class TorneoData {
     }
     
     public List<Jugador> obtenerRanking(Torneo torneo){
-        
-        /* AYUDA!!! tendríamos que hacer que se arme una lista de ranking con el 
-        total de puntos (total de veces que aparece en encuentro 
-        como ganador multiplicado por 3 mas uno por cada contrato)*/
-        
+                
         String comandoSql = "SELECT *, SUM(e.id_ganador = j.id_jugador AND e.id_torneo = ?)*3 AS puntos "
                 + "FROM jugador j, encuentro e "
-                + "GROUP BY j.id_jugador "
+                + "WHERE e.id_ganador = j.id_jugador AND e.id_torneo = ? GROUP BY j.id_jugador "
                 + "ORDER BY puntos DESC"; 
+        List<Jugador> jugadores = new ArrayList<>();
+        Jugador jugador = null;
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            prepStat.setInt(1, torneo.getIdTorneo());
+            prepStat.setInt(2, torneo.getIdTorneo());
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                jugador = new Jugador();
+                
+                jugador.setIdJugador(resultSet.getInt("id_jugador"));
+                jugador.setNombre(resultSet.getString("nombre"));
+                jugador.setApellido(resultSet.getString("apellido"));
+                jugador.setDni(resultSet.getLong("dni"));
+                jugador.setFechaNacimiento(resultSet.getDate("fecha_nacimiento").toLocalDate());
+                System.out.println("fecha de nac: " + Date.valueOf(resultSet.getDate("fecha_nacimiento").toLocalDate()).toString());
+                jugador.setAltura(resultSet.getDouble("altura"));
+                jugador.setPeso(resultSet.getDouble("peso"));
+                jugador.setEstilo(resultSet.getString("estilo"));
+                jugador.setDiestro(resultSet.getBoolean("diestro"));
+                jugador.setActivo(resultSet.getBoolean("activo"));
+                jugador.setPuntos(resultSet.getInt("puntos"));
+                
+                jugadores.add(jugador);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+        }
+        
+        return jugadores;
+    }
+    
+    public List<Jugador> obtenerJugadoresPorTorneo(Torneo torneo){
+        
+        String comandoSql = "SELECT * "
+                + "FROM jugador j, encuentro e "
+                + "WHERE e.id_ganador = j.id_jugador AND e.id_torneo=? GROUP BY j.id_jugador";
         List<Jugador> jugadores = new ArrayList<>();
         Jugador jugador = null;
         

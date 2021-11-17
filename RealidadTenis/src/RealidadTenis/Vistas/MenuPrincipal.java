@@ -137,6 +137,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
     }
     
+    public void verJugadoresPorTorneo(){
+        VistaVerJugadoresPorTorneo vista = new VistaVerJugadoresPorTorneo(this, torneoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vista);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vista);
+
+        vista.setVisible(true);
+    }
+    
     public void verAgregarModificarPatrocinador(){
         AgregarModificarPatrocinador vista = new AgregarModificarPatrocinador(this, patrocinadorData);
         jDesktopPane.removeAll();

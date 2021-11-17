@@ -67,7 +67,6 @@ public class PatrocinadorData {
                 
                 patrocinador.setIdPatrocinador(resultSet.getInt("id_patrocinador"));
                 patrocinador.setMarca(resultSet.getString("marca"));
-                patrocinador.setArticulo(resultSet.getString("articulo"));
                 patrocinador.setActivo(resultSet.getBoolean("activo"));
                 
             }

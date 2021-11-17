@@ -187,6 +187,7 @@ public class MenuTorneo extends javax.swing.JInternalFrame {
 
     private void jButtonVerJugadoresDeTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerJugadoresDeTorneoActionPerformed
         // TODO add your handling code here:
+        menu.verJugadoresPorTorneo();
     }//GEN-LAST:event_jButtonVerJugadoresDeTorneoActionPerformed
 
     private void jButtonVerTorneosActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerTorneosActivosActionPerformed

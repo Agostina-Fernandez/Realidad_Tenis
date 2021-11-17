@@ -31,7 +31,7 @@ public class VistaVerCanchas extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
         
         canchas = (ArrayList<Cancha>) canchaData.obtenerCanchas();
-        canchasActivas = (ArrayList<Cancha>) canchaData.obtenerCanchasEnUso();
+        canchasActivas = (ArrayList<Cancha>) canchaData.obtenerCanchasLibres();
         
         vaciarTabla();
         armarCabecera();

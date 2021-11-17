@@ -55,7 +55,7 @@ public class MenuEncuentro extends javax.swing.JInternalFrame {
         jButtonCargarEncuentro.setBackground(new java.awt.Color(153, 153, 153));
         jButtonCargarEncuentro.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonCargarEncuentro.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonCargarEncuentro.setText("Cargar nuevo Encuentro");
+        jButtonCargarEncuentro.setText("Cargar/Modificar Encuentro");
         jButtonCargarEncuentro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCargarEncuentroActionPerformed(evt);
@@ -65,7 +65,7 @@ public class MenuEncuentro extends javax.swing.JInternalFrame {
         jButtonModificarEncuentro.setBackground(new java.awt.Color(153, 153, 153));
         jButtonModificarEncuentro.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonModificarEncuentro.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonModificarEncuentro.setText("Modificar un Encuentro");
+        jButtonModificarEncuentro.setText("Cargar resultados de un Encuentro");
         jButtonModificarEncuentro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonModificarEncuentroActionPerformed(evt);
