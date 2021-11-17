@@ -77,7 +77,6 @@ public class VistaRanking extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Seleccionar torneo:");
 
-        jComboBoxTorneos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxTorneos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxTorneosActionPerformed(evt);
