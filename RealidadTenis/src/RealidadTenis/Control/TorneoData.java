@@ -40,18 +40,19 @@ public class TorneoData {
     }
     
     public void guardarTorneo(Torneo torneo){
-        String comandoSql = "INSERT INTO torneo (nombre_copa, fecha_inicio, "
-                + "fecha_fin, activo) VALUES (?,?,?,?)";
+        String comandoSql = "INSERT INTO torneo (id_torneo, nombre_copa, fecha_inicio, "
+                + "fecha_fin, activo) VALUES (?,?,?,?,?)";
         
         PreparedStatement prepStat;
         System.out.println("guardar torneo: " + torneo);
         try {
             prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
             
-            prepStat.setString(1, torneo.getNombreCopa());
-            prepStat.setDate(2, Date.valueOf(torneo.getFechaInicio()));
-            prepStat.setDate(3, Date.valueOf(torneo.getFechaFin()));
-            prepStat.setBoolean(4, torneo.isActivo());
+            prepStat.setInt(1, torneo.getIdTorneo());
+            prepStat.setString(2, torneo.getNombreCopa());
+            prepStat.setDate(3, Date.valueOf(torneo.getFechaInicio()));
+            prepStat.setDate(4, Date.valueOf(torneo.getFechaFin()));
+            prepStat.setBoolean(5, torneo.isActivo());
             
             System.out.println(torneo.getIdTorneo());
             

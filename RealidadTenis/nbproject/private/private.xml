@@ -3,12 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Agostina/Documents/GitHub/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaRanking.java</file>
-            <file>file:/C:/Users/Agostina/Documents/GitHub/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaTorneos.java</file>
-            <file>file:/C:/Users/Agostina/Documents/GitHub/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Control/TorneoData.java</file>
-            <file>file:/C:/Users/Agostina/Documents/GitHub/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaVerCanchas.java</file>
-            <file>file:/C:/Users/Agostina/Documents/GitHub/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/MenuPrincipal.java</file>
-            <file>file:/C:/Users/Agostina/Documents/GitHub/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaEncuentrosJugador.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/MenuTorneo.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/MenuEncuentro.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaVerJugadores.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaVerPatrocinadores.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaTorneos.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Control/CanchaData.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaVerJugadoresPorTorneo.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/AgregarModificarPatrocinador.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Control/EncuentroData.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaRanking.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/MenuListados.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Control/TorneoData.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Control/PatrocinadorData.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/MenuPrincipal.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaVerCanchas.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Realidad_Tenis/RealidadTenis/src/RealidadTenis/Vistas/VistaEncuentrosJugador.java</file>
         </group>
     </open-files>
 </project-private>
